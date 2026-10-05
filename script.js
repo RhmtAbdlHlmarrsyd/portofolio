@@ -113,6 +113,14 @@ const certificates = [
     description: 'Deskripsi singkat sertifikat. Ganti data ini dengan sertifikat asli Anda.',
     image: 'assets/certificates/certificate-3.png',
     link: 'assets/certificates/certificate-3.png'
+  },
+    {
+    title: 'Nama Sertifikat (Placeholder)',
+    issuer: 'Penyelenggara (Placeholder)',
+    year: 'Tahun (Placeholder)',
+    description: 'Deskripsi singkat sertifikat. Ganti data ini dengan sertifikat asli Anda.',
+    image: 'assets/certificates/certificate-4.png',
+    link: 'assets/certificates/certificate-4.png'
   }
 ];
 
