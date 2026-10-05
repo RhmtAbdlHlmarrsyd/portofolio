@@ -1,6 +1,6 @@
-/* =========================================================
+/* ==========================================================
    DATA SKILLS
-   ========================================================= */
+   ========================================================== */
 const webSkills = [
   { name: 'HTML', icon: 'bi-filetype-html', level: 'Project Experience', desc: 'Membuat struktur halaman web.' },
   { name: 'CSS', icon: 'bi-filetype-css', level: 'Project Experience', desc: 'Mendesain tampilan website.' },
