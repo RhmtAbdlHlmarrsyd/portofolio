@@ -27,9 +27,6 @@ const motorSkills = [
   { name: 'Dasar Pemeriksaan Komponen Kelistrikan', icon: 'bi-plug' }
 ];
 
-/* =========================================================
-   DATA PROJECTS
-   ========================================================= */
 const projects = [
   {
     title: 'Sistem Manajemen Bengkel Sepeda Motor',
@@ -73,9 +70,6 @@ const projects = [
   }
 ];
 
-/* =========================================================
-   DATA GALLERY
-   ========================================================= */
 const gallery = [
   { image: 'assets/projects/project-1.jpg', title: 'Sistem Manajemen Bengkel' },
   { image: 'assets/projects/project-2.jpg', title: 'Manajemen Peternakan Ayam' },
@@ -86,9 +80,6 @@ const gallery = [
   { image: 'assets/projects/project-7.jpg', title: 'CRUD Data Obat' }
 ];
 
-/* =========================================================
-   DATA CERTIFICATES
-   ========================================================= */
 const certificates = [
   {
     title: 'Sertifikat Program Paham AI',
@@ -99,34 +90,31 @@ const certificates = [
     link: 'assets/certificates/certificate-1.png'
   },
   {
-    title: 'Nama Sertifikat (Placeholder)',
-    issuer: 'Penyelenggara (Placeholder)',
-    year: 'Tahun (Placeholder)',
-    description: 'Deskripsi singkat sertifikat. Ganti data ini dengan sertifikat asli Anda.',
+    title: 'Certificate of AI Class ASEAN',
+    issuer: 'ASEAN FOUNDATION',
+    year: '2026',
+    description: 'Certificate of AI Class ASEAN dari ASEAN FOUNDATION.',
     image: 'assets/certificates/certificate-2.png',
     link: 'assets/certificates/certificate-2.png'
   },
   {
-    title: 'Nama Sertifikat (Placeholder)',
-    issuer: 'Penyelenggara (Placeholder)',
-    year: 'Tahun (Placeholder)',
-    description: 'Deskripsi singkat sertifikat. Ganti data ini dengan sertifikat asli Anda.',
+    title: 'Sertifikat Kompetensi Unit Uji Kompetensi',
+    issuer: 'SMKN 2 MOJOKERTO',
+    year: '2026',
+    description: 'Sertifikat Kompetensi Unit Uji Kompetensi dari SMKN 2 MOJOKERTO.',
     image: 'assets/certificates/certificate-3.png',
     link: 'assets/certificates/certificate-3.png'
   },
-    {
-    title: 'Nama Sertifikat (Placeholder)',
-    issuer: 'Penyelenggara (Placeholder)',
-    year: 'Tahun (Placeholder)',
-    description: 'Deskripsi singkat sertifikat. Ganti data ini dengan sertifikat asli Anda.',
+  {
+    title: 'Sertifikat Kelulusan Game Edukasi Construct',
+    issuer: 'Educa Studio',
+    year: '2026',
+    description: 'Sertifikat Kelulusan Game Edukasi Construct dari Educa Studio.',
     image: 'assets/certificates/certificate-4.png',
     link: 'assets/certificates/certificate-4.png'
   }
 ];
 
-/* =========================================================
-   RENDER SKILLS
-   ========================================================= */
 function renderSkills() {
   const webContainer = document.getElementById('webSkills');
   const motorContainer = document.getElementById('motorSkills');
@@ -166,9 +154,6 @@ function renderSkills() {
   }
 }
 
-/* =========================================================
-   RENDER PROJECTS
-   ========================================================= */
 function renderProjects() {
   const container = document.getElementById('projectsContainer');
   if (!container) return;
@@ -204,9 +189,6 @@ function renderProjects() {
   `).join('');
 }
 
-/* =========================================================
-   RENDER GALLERY
-   ========================================================= */
 function renderGallery() {
   const container = document.getElementById('galleryContainer');
   if (!container) return;
@@ -223,9 +205,6 @@ function renderGallery() {
   `).join('');
 }
 
-/* =========================================================
-   RENDER CERTIFICATES
-   ========================================================= */
 function renderCertificates() {
   const container = document.getElementById('certificatesContainer');
   if (!container) return;
@@ -248,9 +227,6 @@ function renderCertificates() {
   `).join('');
 }
 
-/* =========================================================
-   MODAL: GALLERY
-   ========================================================= */
 function openGalleryModal(image, title) {
   document.getElementById('galleryModalImage').src = image;
   document.getElementById('galleryModalTitle').textContent = title;
@@ -258,9 +234,6 @@ function openGalleryModal(image, title) {
   modal.show();
 }
 
-/* =========================================================
-   MODAL: PROJECT DETAIL
-   ========================================================= */
 function showProjectDetail(index) {
   const p = projects[index];
   const body = document.getElementById('projectModalBody');
@@ -291,9 +264,6 @@ function showProjectDetail(index) {
   modal.show();
 }
 
-/* =========================================================
-   DARK / LIGHT MODE
-   ========================================================= */
 function initTheme() {
   const toggle = document.getElementById('themeToggle');
   const icon = document.getElementById('themeIcon');
@@ -316,9 +286,6 @@ function initTheme() {
   }
 }
 
-/* =========================================================
-   NAVBAR SCROLL & ACTIVE LINK
-   ========================================================= */
 function initNavbar() {
   const navbar = document.getElementById('mainNavbar');
   const backToTop = document.getElementById('backToTop');
@@ -328,34 +295,21 @@ function initNavbar() {
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
 
-    // Navbar shadow
-    if (scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    if (scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
 
-    // Back to top
-    if (scrollY > 400) {
-      backToTop.classList.add('show');
-    } else {
-      backToTop.classList.remove('show');
-    }
+    if (scrollY > 400) backToTop.classList.add('show');
+    else backToTop.classList.remove('show');
 
-    // Active link
     let current = '';
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 120;
-      if (scrollY >= sectionTop) {
-        current = section.getAttribute('id');
-      }
+      if (scrollY >= sectionTop) current = section.getAttribute('id');
     });
 
     navLinks.forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
+      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
     });
   });
 
@@ -363,7 +317,6 @@ function initNavbar() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Close mobile navbar on click
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       const collapse = document.getElementById('navMenu');
@@ -374,9 +327,6 @@ function initNavbar() {
   });
 }
 
-/* =========================================================
-   REVEAL ON SCROLL
-   ========================================================= */
 function initReveal() {
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -391,16 +341,13 @@ function initReveal() {
   reveals.forEach(el => observer.observe(el));
 }
 
-/* =========================================================
-   TAHUN FOOTER
-   ========================================================= */
 function initYear() {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
 
 /* =========================================================
-   TYPING EFFECT
+   TYPING EFFECT — ROLE (hanya bagian role)
    ========================================================= */
 function initTypingEffect() {
   const roleEl = document.getElementById('roleTyping');
@@ -447,9 +394,6 @@ function initTypingEffect() {
   typeRole();
 }
 
-/* =========================================================
-   GREETING BERDASARKAN WAKTU
-   ========================================================= */
 function initGreeting() {
   const greetingEl = document.getElementById('greetingText');
   if (!greetingEl) return;
@@ -465,9 +409,6 @@ function initGreeting() {
   greetingEl.textContent = greeting;
 }
 
-/* =========================================================
-   ANIMATED COUNTER
-   ========================================================= */
 function initCounter() {
   const counters = document.querySelectorAll('.counter');
   if (!counters.length) return;
@@ -502,9 +443,6 @@ function initCounter() {
   counters.forEach(c => observer.observe(c));
 }
 
-/* =========================================================
-   SCROLL PROGRESS BAR
-   ========================================================= */
 function initScrollProgress() {
   const progressBar = document.getElementById('scrollProgress');
   if (!progressBar) return;
@@ -517,14 +455,10 @@ function initScrollProgress() {
   });
 }
 
-/* =========================================================
-   WELCOME TOAST
-   ========================================================= */
 function initWelcomeToast() {
   const toastEl = document.getElementById('welcomeToast');
   if (!toastEl) return;
 
-  // Hanya tampilkan sekali per sesi
   if (sessionStorage.getItem('welcomeShown')) return;
 
   setTimeout(() => {
@@ -534,9 +468,6 @@ function initWelcomeToast() {
   }, 2000);
 }
 
-/* =========================================================
-   INIT SEMUA
-   ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
   renderSkills();
   renderProjects();
@@ -546,7 +477,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initReveal();
   initYear();
-  // ===== FITUR BARU =====
   initTypingEffect();
   initGreeting();
   initCounter();
