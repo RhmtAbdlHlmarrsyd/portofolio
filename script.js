@@ -1,6 +1,6 @@
-/* ==========================================================
+/* =========================================================
    DATA SKILLS
-   ========================================================== */
+   ========================================================= */
 const webSkills = [
   { name: 'HTML', icon: 'bi-filetype-html', level: 'Project Experience', desc: 'Membuat struktur halaman web.' },
   { name: 'CSS', icon: 'bi-filetype-css', level: 'Project Experience', desc: 'Mendesain tampilan website.' },
@@ -23,16 +23,21 @@ const motorSkills = [
   { name: 'Mengganti Kampas Rem', icon: 'bi-circle' },
   { name: 'Mengganti Ban Depan Sepeda Motor', icon: 'bi-circle-fill' },
   { name: 'Mengganti Oli Sepeda Motor', icon: 'bi-droplet-fill' },
+  { name: 'Mengatasi Ban Seret', icon: 'bi-arrow-repeat' },
+  { name: 'Membersihkan Karburator', icon: 'bi-wind' },
   { name: 'Dasar Perawatan Sepeda Motor', icon: 'bi-tools' },
   { name: 'Dasar Pemeriksaan Komponen Kelistrikan', icon: 'bi-plug' }
 ];
 
+/* =========================================================
+   DATA PROJECTS
+   ========================================================= */
 const projects = [
   {
     title: 'Sistem Manajemen Bengkel Sepeda Motor',
     description: 'Aplikasi web untuk mengelola data bengkel sepeda motor, mulai dari pelanggan, motor, mekanik, servis, hingga sparepart. Project ini menjadi salah satu project utama karena sesuai dengan ketertarikan saya pada dunia otomotif.',
     image: 'assets/projects/project-1.jpg',
-    tech: [ 'PHP', 'MySQL', 'Bootstrap', 'CRUD'],
+    tech: ['PHP', 'MySQL', 'Bootstrap', 'CRUD'],
     features: ['Login', 'Dashboard', 'Data Pelanggan', 'Data Motor', 'Data Mekanik', 'Data Servis', 'Data Sparepart', 'CRUD', 'Relasi Database', 'Transaksi Servis'],
     demo: 'LIVE_DEMO_PROJECT_1',
     github: 'https://github.com/RhmtAbdlHlmarrsyd/website-manajemen-bengkel-sepeda-motor',
@@ -70,6 +75,9 @@ const projects = [
   }
 ];
 
+/* =========================================================
+   DATA GALLERY
+   ========================================================= */
 const gallery = [
   { image: 'assets/projects/project-1.jpg', title: 'Sistem Manajemen Bengkel' },
   { image: 'assets/projects/project-2.jpg', title: 'Manajemen Peternakan Ayam' },
@@ -80,6 +88,9 @@ const gallery = [
   { image: 'assets/projects/project-7.jpg', title: 'CRUD Data Obat' }
 ];
 
+/* =========================================================
+   DATA CERTIFICATES
+   ========================================================= */
 const certificates = [
   {
     title: 'Sertifikat Program Paham AI',
@@ -115,6 +126,9 @@ const certificates = [
   }
 ];
 
+/* =========================================================
+   RENDER SKILLS
+   ========================================================= */
 function renderSkills() {
   const webContainer = document.getElementById('webSkills');
   const motorContainer = document.getElementById('motorSkills');
@@ -154,6 +168,9 @@ function renderSkills() {
   }
 }
 
+/* =========================================================
+   RENDER PROJECTS
+   ========================================================= */
 function renderProjects() {
   const container = document.getElementById('projectsContainer');
   if (!container) return;
@@ -189,6 +206,9 @@ function renderProjects() {
   `).join('');
 }
 
+/* =========================================================
+   RENDER GALLERY
+   ========================================================= */
 function renderGallery() {
   const container = document.getElementById('galleryContainer');
   if (!container) return;
@@ -205,6 +225,9 @@ function renderGallery() {
   `).join('');
 }
 
+/* =========================================================
+   RENDER CERTIFICATES
+   ========================================================= */
 function renderCertificates() {
   const container = document.getElementById('certificatesContainer');
   if (!container) return;
@@ -227,6 +250,9 @@ function renderCertificates() {
   `).join('');
 }
 
+/* =========================================================
+   MODAL: GALLERY
+   ========================================================= */
 function openGalleryModal(image, title) {
   document.getElementById('galleryModalImage').src = image;
   document.getElementById('galleryModalTitle').textContent = title;
@@ -234,6 +260,9 @@ function openGalleryModal(image, title) {
   modal.show();
 }
 
+/* =========================================================
+   MODAL: PROJECT DETAIL
+   ========================================================= */
 function showProjectDetail(index) {
   const p = projects[index];
   const body = document.getElementById('projectModalBody');
@@ -264,6 +293,9 @@ function showProjectDetail(index) {
   modal.show();
 }
 
+/* =========================================================
+   DARK / LIGHT MODE
+   ========================================================= */
 function initTheme() {
   const toggle = document.getElementById('themeToggle');
   const icon = document.getElementById('themeIcon');
@@ -286,6 +318,9 @@ function initTheme() {
   }
 }
 
+/* =========================================================
+   NAVBAR SCROLL & ACTIVE LINK
+   ========================================================= */
 function initNavbar() {
   const navbar = document.getElementById('mainNavbar');
   const backToTop = document.getElementById('backToTop');
@@ -327,6 +362,9 @@ function initNavbar() {
   });
 }
 
+/* =========================================================
+   REVEAL ON SCROLL
+   ========================================================= */
 function initReveal() {
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -341,13 +379,16 @@ function initReveal() {
   reveals.forEach(el => observer.observe(el));
 }
 
+/* =========================================================
+   TAHUN FOOTER
+   ========================================================= */
 function initYear() {
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 }
 
 /* =========================================================
-   TYPING EFFECT — ROLE (hanya bagian role)
+   TYPING EFFECT — ROLE
    ========================================================= */
 function initTypingEffect() {
   const roleEl = document.getElementById('roleTyping');
@@ -394,6 +435,9 @@ function initTypingEffect() {
   typeRole();
 }
 
+/* =========================================================
+   GREETING BERDASARKAN WAKTU
+   ========================================================= */
 function initGreeting() {
   const greetingEl = document.getElementById('greetingText');
   if (!greetingEl) return;
@@ -409,6 +453,9 @@ function initGreeting() {
   greetingEl.textContent = greeting;
 }
 
+/* =========================================================
+   ANIMATED COUNTER
+   ========================================================= */
 function initCounter() {
   const counters = document.querySelectorAll('.counter');
   if (!counters.length) return;
@@ -443,6 +490,9 @@ function initCounter() {
   counters.forEach(c => observer.observe(c));
 }
 
+/* =========================================================
+   SCROLL PROGRESS BAR
+   ========================================================= */
 function initScrollProgress() {
   const progressBar = document.getElementById('scrollProgress');
   if (!progressBar) return;
@@ -455,6 +505,9 @@ function initScrollProgress() {
   });
 }
 
+/* =========================================================
+   WELCOME TOAST
+   ========================================================= */
 function initWelcomeToast() {
   const toastEl = document.getElementById('welcomeToast');
   if (!toastEl) return;
@@ -468,6 +521,9 @@ function initWelcomeToast() {
   }, 2000);
 }
 
+/* =========================================================
+   INIT SEMUA
+   ========================================================= */
 document.addEventListener('DOMContentLoaded', () => {
   renderSkills();
   renderProjects();
