@@ -123,6 +123,30 @@ const certificates = [
     description: 'Sertifikat Kelulusan Game Edukasi Construct dari Educa Studio.',
     image: 'assets/certificates/certificate-4.png',
     link: 'assets/certificates/certificate-4.png'
+  },
+   {
+    title: 'Sertifikat Kelulusan Tutorial Dasar Menggunakan Github',
+    issuer: 'PT Humma Teknologi Indonesia',
+    year: '2026',
+    description: 'Sertifikat Kelulusan Tutorial Dasar Menggunakan Github dari PT Humma Teknologi Indonesia.',
+    image: 'assets/certificates/certificate-5.png',
+    link: 'assets/certificates/certificate-5.png'
+  },
+   {
+    title: 'Sertifikat Kelulusan Pemrograman Web Menggunakan Laravel',
+    issuer: 'PT Humma Teknologi Indonesia',
+    year: '2026',
+    description: 'Sertifikat Kelulusan Pemrograman Web Menggunakan Laravel dari PT Humma Teknologi Indonesia.',
+    image: 'assets/certificates/certificate-6.png',
+    link: 'assets/certificates/certificate-6.png'
+  },
+   {
+    title: 'Sertifikat Kelulusan Pemrograman Web dengan PHP Native',
+    issuer: 'PT Humma Teknologi Indonesia',
+    year: '2026',
+    description: 'Sertifikat Kelulusan Pemrograman Web dengan PHP Native dari PT Humma Teknologi Indonesia.',
+    image: 'assets/certificates/certificate-7.png',
+    link: 'assets/certificates/certificate-7.png'
   }
 ];
 
