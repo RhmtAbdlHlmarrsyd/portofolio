@@ -153,20 +153,19 @@ img { max-width: 100%; height: auto; }
 }
 
 /* =========================================================
-   HERO SECTION — Jarak dari Navbar
+   HERO SECTION
    ========================================================= */
 .hero-section {
   position: relative;
   background: var(--bg-primary);
   overflow: hidden;
-  padding-top: 120px;              /* ← Jarak dari navbar */
+  padding-top: 120px;
   padding-bottom: 60px;
   min-height: 100vh;
   display: flex;
   align-items: center;
 }
 
-/* Dekorasi background blob */
 .hero-section::before {
   content: '';
   position: absolute;
@@ -185,7 +184,6 @@ img { max-width: 100%; height: auto; }
   50% { transform: translate(-30px, 30px) scale(1.1); }
 }
 
-/* Watermark kode */
 .hero-section::after {
   content: '</>';
   position: absolute;
@@ -332,7 +330,7 @@ img { max-width: 100%; height: auto; }
 }
 
 /* =========================================================
-   HERO AVATAR — Versi Unik & Modern
+   HERO AVATAR
    ========================================================= */
 .hero-avatar-wrapper {
   position: relative;
@@ -343,7 +341,6 @@ img { max-width: 100%; height: auto; }
   margin-top: 20px;
 }
 
-/* Foto profil — bentuk blob + border gradient */
 .hero-avatar {
   width: 100%;
   aspect-ratio: 1;
@@ -404,7 +401,6 @@ img { max-width: 100%; height: auto; }
   to { transform: rotate(-360deg); }
 }
 
-/* Floating dots dekoratif */
 .hero-avatar-wrapper::before {
   content: '';
   position: absolute;
