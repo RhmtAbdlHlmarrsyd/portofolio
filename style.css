@@ -216,7 +216,16 @@ img { max-width: 100%; height: auto; }
   line-height: 1.15;
   letter-spacing: -1.5px;
   margin-bottom: 1rem;
-  background: linear-gradient(270deg, var(--accent), #60a5fa, #a78bfa, var(--accent));
+  color: #0f172a;
+}
+
+[data-bs-theme="dark"] .hero-name {
+  color: #f1f5f9;
+}
+
+/* Efek gradient HANYA di light mode */
+[data-bs-theme="light"] .hero-name {
+  background: linear-gradient(270deg, #2563eb, #60a5fa, #a78bfa, #2563eb);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
