@@ -147,6 +147,14 @@ const certificates = [
     description: 'Sertifikat Kelulusan Pemrograman Web dengan PHP Native dari PT Humma Teknologi Indonesia.',
     image: 'assets/certificates/certificate-7.png',
     link: 'assets/certificates/certificate-7.png'
+  },
+  {
+  title: 'Sertifikat Kelulusan Pemrograman Web Front End dengan Bootstrap 5',
+    issuer: 'PT Humma Teknologi Indonesia',
+    year: '2026',
+    description: 'Sertifikat Kelulusan Pemrograman Web Front End dengan Bootstrap 5 dari PT Humma Teknologi Indonesia.',
+    image: 'assets/certificates/certificate-8.png',
+    link: 'assets/certificates/certificate-8.png'
   }
 ];
 
