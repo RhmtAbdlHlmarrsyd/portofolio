@@ -155,6 +155,22 @@ const certificates = [
     description: 'Sertifikat Kelulusan Pemrograman Web Front End dengan Bootstrap 5 dari PT Humma Teknologi Indonesia.',
     image: 'assets/certificates/certificate-8.png',
     link: 'assets/certificates/certificate-8.png'
+  },
+  {
+  title: 'Sertifikat Kelulusan Pengenalan IT dan Fundamental Programming',
+    issuer: 'PT Humma Teknologi Indonesia',
+    year: '2026',
+    description: 'Sertifikat Kelulusan Pengenalan IT dan Fundamental Programming dari PT Humma Teknologi Indonesia.',
+    image: 'assets/certificates/certificate-9.png',
+    link: 'assets/certificates/certificate-9.png'
+  },
+   {
+  title: 'Sertifikat Kelulusan Mastering Public Speaking',
+    issuer: 'PT Humma Teknologi Indonesia',
+    year: '2026',
+    description: 'Sertifikat Kelulusan Mastering Public Speaking dari PT Humma Teknologi Indonesia.',
+    image: 'assets/certificates/certificate-10.png',
+    link: 'assets/certificates/certificate-10.png'
   }
 ];
 
