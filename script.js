@@ -171,6 +171,14 @@ const certificates = [
     description: 'Sertifikat Kelulusan Mastering Public Speaking dari PT Humma Teknologi Indonesia.',
     image: 'assets/certificates/certificate-10.png',
     link: 'assets/certificates/certificate-10.png'
+  },
+   {
+  title: 'Sertifikat Kelulusan Belajar Coding Menggunakan Scratch',
+    issuer: 'PT Humma Teknologi Indonesia',
+    year: '2026',
+    description: 'Sertifikat Kelulusan Belajar Coding Menggunakan Scratch dari PT Humma Teknologi Indonesia.',
+    image: 'assets/certificates/certificate-11.png',
+    link: 'assets/certificates/certificate-11.png'
   }
 ];
 
