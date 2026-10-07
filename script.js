@@ -204,7 +204,7 @@ function renderProjects() {
       <div class="project-card">
         <div class="project-image-wrapper">
           ${p.featured ? '<span class="project-featured-badge"><i class="bi bi-star-fill me-1"></i>Utama</span>' : ''}
-          <img src="${p.image}" alt="${p.title}" class="project-image" onerror="this.src='https://via.placeholder.com/600x375/2563eb/ffffff?text=${encodeURIComponent(p.title)}'">
+          <img src="${p.image}" alt="${p.title}" class="project-image" onerror="this.src='https://via.placeholder.com/600x375/1e40af/ffffff?text=${encodeURIComponent(p.title)}'">
         </div>
         <div class="project-body">
           <h4 class="project-title">${p.title}</h4>
@@ -240,7 +240,7 @@ function renderGallery() {
   container.innerHTML = gallery.map((g, i) => `
     <div class="col-md-6 col-lg-3">
       <div class="gallery-item" onclick="openGalleryModal('${g.image}', '${g.title}')">
-        <img src="${g.image}" alt="${g.title}" onerror="this.src='https://via.placeholder.com/600x375/2563eb/ffffff?text=${encodeURIComponent(g.title)}'">
+        <img src="${g.image}" alt="${g.title}" onerror="this.src='https://via.placeholder.com/600x375/1e40af/ffffff?text=${encodeURIComponent(g.title)}'">
         <div class="gallery-overlay">
           <i class="bi bi-zoom-in"></i>
         </div>
@@ -259,321 +259,7 @@ function renderCertificates() {
   container.innerHTML = certificates.map(c => `
     <div class="col-md-6 col-lg-4">
       <div class="cert-card">
-        <img src="${c.image}" alt="${c.title}" class="cert-image" onerror="this.src='https://via.placeholder.com/400x300/2563eb/ffffff?text=Sertifikat'">
-        <div class="cert-body">
-          <h4 class="cert-title">${c.title}</h4>
-          <p class="cert-issuer"><i class="bi bi-building me-1"></i>${c.issuer}</p>
-          <p class="cert-year"><i class="bi bi-calendar3 me-1"></i>${c.year}</p>
-          <p class="cert-desc">${c.description}</p>
-          <a href="${c.link}" target="_blank" rel="noopener" class="btn-project">
-            <i class="bi bi-eye"></i> Lihat Sertifikat
-          </a>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-function openGalleryModal(image, title) {
-  document.getElementById('galleryModalImage').src = image;
-  document.getElementById('galleryModalTitle').textContent = title;
-  const modal = new bootstrap.Modal(document.getElementById('galleryModal'));
-  modal.show();
-}
-
-function showProjectDetail(index) {
-  const p = projects[index];
-  const body = document.getElementById('projectModalBody');
-  document.getElementById('projectModalTitle').textContent = p.title;
-
-  body.innerHTML = `
-    <img src="${p.image}" alt="${p.title}" class="img-fluid rounded mb-3" onerror="this.src='https://via.placeholder.com/800x400/2563eb/ffffff?text=${encodeURIComponent(p.title)}'">
-    <p class="text-secondary">${p.description}</p>
-    <h6 class="mt-3 mb-2"><i class="bi bi-stack me-1"></i> Teknologi</h6>
-    <div class="project-tech mb-3">
-      ${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}
-    </div>
-    <h6 class="mb-2"><i class="bi bi-list-check me-1"></i> Fitur Utama</h6>
-    <ul class="project-features mb-3">
-      ${p.features.map(f => `<li><i class="bi bi-check2"></i><span>${f}</span></li>`).join('')}
-    </ul>
-    <div class="d-flex gap-2 flex-wrap">
-      <a href="${p.demo}" target="_blank" rel="noopener" class="btn-project primary">
-        <i class="bi bi-box-arrow-up-right"></i> Live Demo
-      </a>
-      <a href="${p.github}" target="_blank" rel="noopener" class="btn-project">
-        <i class="bi bi-github"></i> GitHub
-      </a>
-    </div>
-  `;
-
-  const modal = new bootstrap.Modal(document.getElementById('projectModal'));
-  modal.show();
-}
-
-function initTheme() {
-  const toggle = document.getElementById('themeToggle');
-  const icon = document.getElementById('themeIcon');
-  const html = document.documentElement;
-
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  html.setAttribute('data-bs-theme', savedTheme);
-  updateIcon(savedTheme);
-
-  toggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-bs-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-bs-theme', next);
-    localStorage.setItem('theme', next);
-    updateIcon(next);
-  });
-
-  function updateIcon(theme) {
-    icon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-  }
-}
-
-function initNavbar() {
-  const navbar = document.getElementById('mainNavbar');
-  const backToTop = document.getElementById('backToTop');
-  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-  const sections = document.querySelectorAll('section[id]');
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-
-    if (scrollY > 50) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
-
-    if (scrollY > 400) backToTop.classList.add('show');
-    else backToTop.classList.remove('show');
-
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      if (scrollY >= sectionTop) current = section.getAttribute('id');
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
-    });
-  });
-
-  backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      const collapse = document.getElementById('navMenu');
-      if (collapse.classList.contains('show')) {
-        new bootstrap.Collapse(collapse).hide();
-      }
-    });
-  });
-}
-
-function initReveal() {
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  reveals.forEach(el => observer.observe(el));
-}
-
-function initYear() {
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-}
-
-function initTypingEffect() {
-  const roleEl = document.getElementById('roleTyping');
-  if (!roleEl) return;
-
-  const roles = [
-    'Web Development Enthusiast',
-    'Motorcycle Technician',
-    'Frontend Learner',
-    'Laravel Explorer',
-    'SMK Student'
-  ];
-
-  let roleIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function typeRole() {
-    const currentRole = roles[roleIndex];
-    const speed = isDeleting ? 40 : 90;
-
-    if (!isDeleting) {
-      roleEl.textContent = currentRole.substring(0, charIndex + 1);
-      charIndex++;
-
-      if (charIndex === currentRole.length) {
-        isDeleting = true;
-        setTimeout(typeRole, 1800);
-        return;
-      }
-    } else {
-      roleEl.textContent = currentRole.substring(0, charIndex - 1);
-      charIndex--;
-
-      if (charIndex === 0) {
-        isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-      }
-    }
-
-    setTimeout(typeRole, speed);
-  }
-
-  typeRole();
-}
-
-function initGreeting() {
-  const greetingEl = document.getElementById('greetingText');
-  if (!greetingEl) return;
-
-  const hour = new Date().getHours();
-  let greeting = 'Halo';
-
-  if (hour >= 4 && hour < 11) greeting = 'Selamat Pagi';
-  else if (hour >= 11 && hour < 15) greeting = 'Selamat Siang';
-  else if (hour >= 15 && hour < 18) greeting = 'Selamat Sore';
-  else greeting = 'Selamat Malam';
-
-  greetingEl.textContent = greeting;
-}
-
-function initCounter() {
-  const counters = document.querySelectorAll('.counter');
-  if (!counters.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-
-      const counter = entry.target;
-      const target = +counter.getAttribute('data-target');
-      const duration = 1500;
-      const stepTime = 16;
-      const steps = duration / stepTime;
-      const increment = target / steps;
-      let current = 0;
-
-      const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-          counter.textContent = Math.ceil(current);
-          requestAnimationFrame(updateCounter);
-        } else {
-          counter.textContent = target + (target === 100 ? '' : '+');
-        }
-      };
-
-      updateCounter();
-      observer.unobserve(counter);
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(c => observer.observe(c));
-}
-
-function initScrollProgress() {
-  const progressBar = document.getElementById('scrollProgress');
-  if (!progressBar) return;
-
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const percent = (scrollTop / docHeight) * 100;
-    progressBar.style.width = percent + '%';
-  });
-}
-
-function initWelcomeToast() {
-  const toastEl = document.getElementById('welcomeToast');
-  if (!toastEl) return;
-
-  if (sessionStorage.getItem('welcomeShown')) return;
-
-  setTimeout(() => {
-    const toast = new bootstrap.Toast(toastEl, { delay: 6000 });
-    toast.show();
-    sessionStorage.setItem('welcomeShown', 'true');
-  }, 2000);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderSkills();
-  renderProjects();
-  renderGallery();
-  renderCertificates();
-  initTheme();
-  initNavbar();
-  initReveal();
-  initYear();
-  initTypingEffect();
-  initGreeting();
-  initCounter();
-  initScrollProgress();
-  initWelcomeToast();
-});">
-            ${p.features.slice(0, 5).map(f => `<li><i class="bi bi-check2"></i><span>${f}</span></li>`).join('')}
-            ${p.features.length > 5 ? `<li><i class="bi bi-three-dots"></i><span>dan lainnya</span></li>` : ''}
-          </ul>
-          <div class="project-actions">
-            <a href="${p.github}" target="_blank" rel="noopener" class="btn-project">
-              <i class="bi bi-github"></i> GitHub
-            </a>
-            <button class="btn-project" onclick="showProjectDetail(${i})">
-              <i class="bi bi-eye"></i> Lihat Detail
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-/* =========================================================
-   RENDER GALLERY
-   ========================================================= */
-function renderGallery() {
-  const container = document.getElementById('galleryContainer');
-  if (!container) return;
-
-  container.innerHTML = gallery.map((g, i) => `
-    <div class="col-md-6 col-lg-3">
-      <div class="gallery-item" onclick="openGalleryModal('${g.image}', '${g.title}')">
-        <img src="${g.image}" alt="${g.title}" onerror="this.src='https://via.placeholder.com/600x375/2563eb/ffffff?text=${encodeURIComponent(g.title)}'">
-        <div class="gallery-overlay">
-          <i class="bi bi-zoom-in"></i>
-        </div>
-      </div>
-    </div>
-  `).join('');
-}
-
-/* =========================================================
-   RENDER CERTIFICATES
-   ========================================================= */
-function renderCertificates() {
-  const container = document.getElementById('certificatesContainer');
-  if (!container) return;
-
-  container.innerHTML = certificates.map(c => `
-    <div class="col-md-6 col-lg-4">
-      <div class="cert-card">
-        <img src="${c.image}" alt="${c.title}" class="cert-image" onerror="this.src='https://via.placeholder.com/400x300/2563eb/ffffff?text=Sertifikat'">
+        <img src="${c.image}" alt="${c.title}" class="cert-image" onerror="this.src='https://via.placeholder.com/400x300/1e40af/ffffff?text=Sertifikat'">
         <div class="cert-body">
           <h4 class="cert-title">${c.title}</h4>
           <p class="cert-issuer"><i class="bi bi-building me-1"></i>${c.issuer}</p>
@@ -607,7 +293,7 @@ function showProjectDetail(index) {
   document.getElementById('projectModalTitle').textContent = p.title;
 
   body.innerHTML = `
-    <img src="${p.image}" alt="${p.title}" class="img-fluid rounded mb-3" onerror="this.src='https://via.placeholder.com/800x400/2563eb/ffffff?text=${encodeURIComponent(p.title)}'">
+    <img src="${p.image}" alt="${p.title}" class="img-fluid rounded mb-3" onerror="this.src='https://via.placeholder.com/800x400/1e40af/ffffff?text=${encodeURIComponent(p.title)}'">
     <p class="text-secondary">${p.description}</p>
     <h6 class="mt-3 mb-2"><i class="bi bi-stack me-1"></i> Teknologi</h6>
     <div class="project-tech mb-3">
@@ -618,9 +304,6 @@ function showProjectDetail(index) {
       ${p.features.map(f => `<li><i class="bi bi-check2"></i><span>${f}</span></li>`).join('')}
     </ul>
     <div class="d-flex gap-2 flex-wrap">
-      <a href="${p.demo}" target="_blank" rel="noopener" class="btn-project primary">
-        <i class="bi bi-box-arrow-up-right"></i> Live Demo
-      </a>
       <a href="${p.github}" target="_blank" rel="noopener" class="btn-project">
         <i class="bi bi-github"></i> GitHub
       </a>
@@ -632,32 +315,7 @@ function showProjectDetail(index) {
 }
 
 /* =========================================================
-   DARK / LIGHT MODE
-   ========================================================= */
-function initTheme() {
-  const toggle = document.getElementById('themeToggle');
-  const icon = document.getElementById('themeIcon');
-  const html = document.documentElement;
-
-  const savedTheme = localStorage.getItem('theme') || 'light';
-  html.setAttribute('data-bs-theme', savedTheme);
-  updateIcon(savedTheme);
-
-  toggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-bs-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-bs-theme', next);
-    localStorage.setItem('theme', next);
-    updateIcon(next);
-  });
-
-  function updateIcon(theme) {
-    icon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-stars-fill';
-  }
-}
-
-/* =========================================================
-   NAVBAR SCROLL & ACTIVE LINK
+   NAVBAR SCROLL
    ========================================================= */
 function initNavbar() {
   const navbar = document.getElementById('mainNavbar');
@@ -774,7 +432,7 @@ function initTypingEffect() {
 }
 
 /* =========================================================
-   GREETING BERDASARKAN WAKTU
+   GREETING OTOMATIS
    ========================================================= */
 function initGreeting() {
   const greetingEl = document.getElementById('greetingText');
@@ -867,7 +525,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProjects();
   renderGallery();
   renderCertificates();
-  initTheme();
   initNavbar();
   initReveal();
   initYear();
