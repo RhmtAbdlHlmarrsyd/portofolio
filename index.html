@@ -28,7 +28,7 @@
   <!-- ===== Google Fonts ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <!-- ===== Custom CSS ===== -->
   <link rel="stylesheet" href="style.css" />
@@ -42,7 +42,7 @@
   <nav class="navbar navbar-expand-lg fixed-top custom-navbar" id="mainNavbar">
     <div class="container">
       <a class="navbar-brand fw-bold" href="#home">
-        <span class="brand-icon">&lt;/&gt;</span> Rahmat<span class="text-accent">.</span>
+        <span class="brand-icon">Ar</span>rasyid<span class="text-accent">.</span>
       </a>
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
         <i class="bi bi-list fs-2"></i>
@@ -65,49 +65,61 @@
   <!-- ================= HERO SECTION ================= -->
   <section class="hero-section" id="home">
     <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-7 order-2 order-lg-1">
+      <div class="row align-items-center min-vh-100">
+        <div class="col-lg-8 order-2 order-lg-1">
           <p class="hero-greeting fade-in-up">
-            <span id="greetingText">Halo</span>, saya
+            <span class="wave">👋</span> Halo, saya
           </p>
           <h1 class="hero-name fade-in-up delay-1">Rahmat Abdul Halim Arrasyid</h1>
           <h2 class="hero-role fade-in-up delay-2">
-            <span class="text-accent">&lt;</span>
-            <span id="roleTyping" class="typing-text"></span><span class="typing-cursor">|</span>
-            <span class="text-accent">/&gt;</span>
+            <span class="role-label">Saya seorang</span>
+            <span class="role-typing">
+              <span id="roleTyping"></span><span class="typing-cursor">|</span>
+            </span>
           </h2>
           <p class="hero-desc fade-in-up delay-3">
-            Saya adalah siswa SMK yang sedang mengembangkan kemampuan di bidang web development dan terus belajar berbagai skill baru. Saya juga memiliki ketertarikan pada teknik sepeda motor dan senang mengembangkan kemampuan melalui praktik langsung.
+            Siswa SMK Rekayasa Perangkat Lunak yang sedang mengembangkan kemampuan di bidang <strong>web development</strong> dan terus belajar berbagai skill baru. Saya juga memiliki ketertarikan pada <strong>teknik sepeda motor</strong> dan senang mengembangkan kemampuan melalui praktik langsung.
           </p>
 
           <div class="hero-buttons fade-in-up delay-4">
             <a href="#projects" class="btn btn-primary-custom">
-              <i class="bi bi-grid-1x2 me-1"></i> Lihat Project
-            </a>
-            <a href="#about" class="btn btn-outline-custom">
-              <i class="bi bi-person me-1"></i> Tentang Saya
+              Lihat Project <i class="bi bi-arrow-right ms-1"></i>
             </a>
             <a href="assets/cv/CV-Rahmat-Abdul-Halim-Arrasyid.pdf" download class="btn btn-outline-custom">
-              <i class="bi bi-download me-1"></i> Download CV
+              <i class="bi bi-download me-1"></i> CV
             </a>
             <a href="#contact" class="btn btn-outline-custom">
-              <i class="bi bi-chat-dots me-1"></i> Hubungi Saya
+              <i class="bi bi-envelope me-1"></i> Kontak
+            </a>
+          </div>
+
+          <div class="hero-socials fade-in-up delay-4">
+            <a href="https://github.com/RhmtAbdlHlmarrsyd" target="_blank" rel="noopener" aria-label="GitHub">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="https://wa.me/6285655873719" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="mailto:rahmatabdulhalimarrasyid@gmail.com" aria-label="Email">
+              <i class="bi bi-envelope-fill"></i>
             </a>
           </div>
         </div>
 
-        <div class="col-lg-5 order-1 order-lg-2 text-center">
+        <div class="col-lg-4 order-1 order-lg-2 text-center mb-5 mb-lg-0">
           <div class="hero-avatar-wrapper fade-in-up delay-2">
-            <img src="assets/profile/profile.jpg" alt="Foto Rahmat Abdul Halim Arrasyid" class="hero-avatar" onerror="this.src='https://via.placeholder.com/400x400/1e40af/ffffff?text=Foto+Profil'" />
-            <div class="avatar-ring"></div>
-            <div class="avatar-badge">SMK RPL</div>
+            <div class="avatar-glow"></div>
+            <img src="assets/profile/profile.jpg" alt="Foto Rahmat Abdul Halim Arrasyid" class="hero-avatar" onerror="this.src='https://via.placeholder.com/300x300/2563eb/ffffff?text=Foto'" />
+            <div class="avatar-status">
+              <span class="status-dot"></span> Available
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <a href="#about" class="scroll-down" aria-label="Scroll ke bawah">
-      <i class="bi bi-chevron-double-down"></i>
+      <i class="bi bi-arrow-down"></i>
     </a>
   </section>
 
@@ -120,10 +132,10 @@
         <div class="section-divider"></div>
       </div>
 
-      <div class="row g-4 align-items-center">
+      <div class="row g-5 align-items-center">
         <div class="col-lg-5 reveal">
           <div class="about-image-wrapper">
-            <img src="assets/profile/profile1.jpg" alt="Tentang Rahmat" class="about-image" onerror="this.src='assets/profile/profile.jpg'"  />
+            <img src="assets/profile/profile1.jpg" alt="Tentang Rahmat" class="about-image" onerror="this.src='assets/profile/profile.jpg'" />
           </div>
         </div>
         <div class="col-lg-7 reveal">
@@ -138,33 +150,29 @@
             Selain web development, saya juga memiliki ketertarikan yang kuat pada <strong>dunia otomotif, khususnya teknik sepeda motor</strong>. Saya senang mempelajari hal-hal teknis seperti perawatan dasar, sistem kelistrikan, dan komponen sepeda motor.
           </p>
 
-          <div class="row g-3 mt-3">
+          <div class="row g-3 mt-4">
             <div class="col-6 col-md-3">
               <div class="about-stat">
-                <i class="bi bi-code-slash"></i>
                 <span class="counter" data-target="7">0</span>
                 <p class="about-stat-label">Teknologi Web</p>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="about-stat">
-                <i class="bi bi-database"></i>
-                <span class="counter" data-target="3">0</span>
+                <span class="counter" data-target="4">0</span>
                 <p class="about-stat-label">Project</p>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="about-stat">
-                <i class="bi bi-tools"></i>
                 <span class="counter" data-target="12">0</span>
                 <p class="about-stat-label">Skill Motor</p>
               </div>
             </div>
             <div class="col-6 col-md-3">
               <div class="about-stat">
-                <i class="bi bi-graph-up-arrow"></i>
                 <span class="counter" data-target="100">0</span>
-                <p class="about-stat-label">Semangat Belajar (%)</p>
+                <p class="about-stat-label">Semangat (%)</p>
               </div>
             </div>
           </div>
@@ -453,8 +461,6 @@
           <a href="https://wa.me/6285655873719" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
           <a href="mailto:rahmatabdulhalimarrasyid@gmail.com" aria-label="Email"><i class="bi bi-envelope-fill"></i></a>
         </div>
-        <p class="footer-copy">&copy; <span id="year"></span> Rahmat Abdul Halim Arrasyid</p>
-      </div>
     </div>
   </footer>
 
@@ -482,6 +488,34 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
         </div>
         <div class="modal-body" id="projectModalBody"></div>
+      </div>
+    </div>
+  </div>
+
+    <!-- ================= MODAL CERTIFICATE ================= -->
+  <div class="modal fade" id="certificateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content custom-modal">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="certificateModalTitle">Sertifikat</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body text-center p-4">
+          <img src="" alt="Sertifikat" id="certificateModalImage" class="img-fluid rounded shadow" style="max-height: 70vh; object-fit: contain;" />
+          <div class="cert-modal-info mt-3">
+            <h6 id="certificateModalIssuer" class="text-accent mb-1"></h6>
+            <p id="certificateModalYear" class="text-muted small mb-0"></p>
+          </div>
+        </div>
+        <div class="modal-footer border-0 justify-content-between">
+          <button type="button" class="btn btn-outline-custom" id="certPrevBtn">
+            <i class="bi bi-arrow-left me-1"></i> Sebelumnya
+          </button>
+          <span class="text-muted small" id="certCounter">1 / 7</span>
+          <button type="button" class="btn btn-outline-custom" id="certNextBtn">
+            Berikutnya <i class="bi bi-arrow-right ms-1"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>
