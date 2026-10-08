@@ -179,6 +179,14 @@ const certificates = [
     description: 'Sertifikat Kelulusan Belajar Coding Menggunakan Scratch dari PT Humma Teknologi Indonesia.',
     image: 'assets/certificates/certificate-11.png',
     link: 'assets/certificates/certificate-11.png'
+  },
+  {
+  title: 'Sertifikat Kelulusan Java Fundamental Programming',
+    issuer: 'PT Humma Teknologi Indonesia',
+    year: '2026',
+    description: 'Sertifikat Kelulusan Java Fundamental Programming dari PT Humma Teknologi Indonesia.',
+    image: 'assets/certificates/certificate-12.png',
+    link: 'assets/certificates/certificate-12.png'
   }
 ];
 
@@ -288,23 +296,106 @@ function renderCertificates() {
   const container = document.getElementById('certificatesContainer');
   if (!container) return;
 
-  container.innerHTML = certificates.map(c => `
+  container.innerHTML = certificates.map((c, i) => `
     <div class="col-md-6 col-lg-4">
       <div class="cert-card">
-        <img src="${c.image}" alt="${c.title}" class="cert-image" onerror="this.src='https://via.placeholder.com/400x300/1e40af/ffffff?text=Sertifikat'">
+        <img src="${c.image}" alt="${c.title}" class="cert-image" onerror="this.src='https://via.placeholder.com/400x300/2563eb/ffffff?text=Sertifikat'">
         <div class="cert-body">
           <h4 class="cert-title">${c.title}</h4>
           <p class="cert-issuer"><i class="bi bi-building me-1"></i>${c.issuer}</p>
           <p class="cert-year"><i class="bi bi-calendar3 me-1"></i>${c.year}</p>
           <p class="cert-desc">${c.description}</p>
-          <a href="${c.link}" target="_blank" rel="noopener" class="btn-project">
+          <button class="btn-project" onclick="openCertificateModal(${i})">
             <i class="bi bi-eye"></i> Lihat Sertifikat
-          </a>
+          </button>
         </div>
       </div>
     </div>
   `).join('');
 }
+
+/* =========================================================
+   MODAL: CERTIFICATE
+   ========================================================= */
+let currentCertIndex = 0;
+
+function openCertificateModal(index) {
+  currentCertIndex = index;
+  updateCertificateModal();
+  const modal = new bootstrap.Modal(document.getElementById('certificateModal'));
+  modal.show();
+}
+
+function updateCertificateModal() {
+  const c = certificates[currentCertIndex];
+  document.getElementById('certificateModalImage').src = c.image;
+  document.getElementById('certificateModalTitle').textContent = c.title;
+  document.getElementById('certificateModalIssuer').textContent = c.issuer;
+  document.getElementById('certificateModalYear').textContent = c.year;
+  document.getElementById('certCounter').textContent = `${currentCertIndex + 1} / ${certificates.length}`;
+}
+
+function initCertificateNavigation() {
+  const prevBtn = document.getElementById('certPrevBtn');
+  const nextBtn = document.getElementById('certNextBtn');
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      currentCertIndex = (currentCertIndex - 1 + certificates.length) % certificates.length;
+      updateCertificateModal();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      currentCertIndex = (currentCertIndex + 1) % certificates.length;
+      updateCertificateModal();
+    });
+  }
+
+  // Navigasi dengan keyboard (panah kiri/kanan)
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('certificateModal');
+    if (!modal || !modal.classList.contains('show')) return;
+
+    if (e.key === 'ArrowLeft') {
+      currentCertIndex = (currentCertIndex - 1 + certificates.length) % certificates.length;
+      updateCertificateModal();
+    } else if (e.key === 'ArrowRight') {
+      currentCertIndex = (currentCertIndex + 1) % certificates.length;
+      updateCertificateModal();
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderSkills();
+  renderProjects();
+  renderGallery();
+  renderCertificates();
+  initNavbar();
+  initReveal();
+  initYear();
+  initTypingEffect();
+  initCounter();
+  initScrollProgress();
+  initWelcomeToast();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderSkills();
+  renderProjects();
+  renderGallery();
+  renderCertificates();
+  initNavbar();
+  initReveal();
+  initYear();
+  initTypingEffect();
+  initCounter();
+  initScrollProgress();
+  initWelcomeToast();
+  initCertificateNavigation();   // ← TAMBAHKAN
+});
 
 /* =========================================================
    MODAL: GALLERY
