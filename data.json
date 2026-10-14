@@ -13,5 +13,13 @@
     "motor": []
   },
   "projects": [],
-  "certificates": []
+  "certificates": [
+    {
+      "title": "ff",
+      "issuer": "ff",
+      "year": "2022",
+      "description": "d",
+      "image": ""
+    }
+  ]
 }
