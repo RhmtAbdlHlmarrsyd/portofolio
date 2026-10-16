@@ -46,32 +46,7 @@ function getDefaultMotorSkills() {
 }
 
 /* =========================================================
-   LOAD DATA
-   ========================================================= */
-async function loadData() {
-  try {
-    const res = await fetch('data.json?v=' + Date.now());
-    if (!res.ok) throw new Error('data.json tidak ditemukan');
-    const data = await res.json();
-
-    webSkills = data.skills?.web || getDefaultWebSkills();
-    motorSkills = data.skills?.motor || getDefaultMotorSkills();
-    projects = data.projects || getDefaultProjects();
-    certificates = data.certificates || getDefaultCertificates();
-
-    updateCounters();
-  } catch (err) {
-    console.error('Gagal load data.json, pakai default:', err);
-    webSkills = getDefaultWebSkills();
-    motorSkills = getDefaultMotorSkills();
-    projects = getDefaultProjects();
-    certificates = getDefaultCertificates();
-    updateCounters();
-  }
-}
-
-/* =========================================================
-   FALLBACK
+   FALLBACK PROJECTS
    ========================================================= */
 function getDefaultProjects() {
   return [
@@ -126,6 +101,9 @@ function getDefaultProjects() {
   ];
 }
 
+/* =========================================================
+   FALLBACK CERTIFICATES
+   ========================================================= */
 function getDefaultCertificates() {
   return [
     { title: 'Program Paham AI', issuer: 'Senopati Academy · Polri · Kemendikdasmen', year: '2026', description: 'Sertifikat Kompetensi Program Paham AI.', image: 'assets/certificates/certificate-1.png' },
@@ -144,6 +122,31 @@ function getDefaultCertificates() {
 }
 
 /* =========================================================
+   LOAD DATA DARI data.json
+   ========================================================= */
+async function loadData() {
+  try {
+    const res = await fetch('data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('data.json tidak ditemukan');
+    const data = await res.json();
+
+    webSkills = data.skills?.web || getDefaultWebSkills();
+    motorSkills = data.skills?.motor || getDefaultMotorSkills();
+    projects = data.projects || getDefaultProjects();
+    certificates = data.certificates || getDefaultCertificates();
+
+    updateCounters();
+  } catch (err) {
+    console.error('Gagal load data.json, pakai default:', err);
+    webSkills = getDefaultWebSkills();
+    motorSkills = getDefaultMotorSkills();
+    projects = getDefaultProjects();
+    certificates = getDefaultCertificates();
+    updateCounters();
+  }
+}
+
+/* =========================================================
    UPDATE COUNTERS
    ========================================================= */
 function updateCounters() {
@@ -158,7 +161,7 @@ function updateCounters() {
 }
 
 /* =========================================================
-   RENDER SKILLS
+   RENDER SKILLS (dengan logo warna)
    ========================================================= */
 function renderSkills() {
   const webContainer = document.getElementById('webSkills');
@@ -210,7 +213,7 @@ function renderSkills() {
 }
 
 /* =========================================================
-   RENDER PROJECTS
+   RENDER PROJECTS (Carousel)
    ========================================================= */
 function renderProjects() {
   const track = document.getElementById('projectsTrack');
@@ -246,7 +249,7 @@ function renderProjects() {
 }
 
 /* =========================================================
-   RENDER CERTIFICATES
+   RENDER CERTIFICATES (Carousel) — DENGAN WRAPPER GAMBAR
    ========================================================= */
 function renderCertificates() {
   const track = document.getElementById('certificatesTrack');
@@ -259,7 +262,9 @@ function renderCertificates() {
 
   track.innerHTML = certificates.map((c, i) => `
     <div class="cert-card" onclick="openCertificateModal(${i})">
-      <img src="${c.image}" alt="${c.title}" class="cert-image" onerror="this.src='https://via.placeholder.com/600x450/FFD93D/000000?text=Sertifikat'">
+      <div class="cert-image-wrapper">
+        <img src="${c.image}" alt="${c.title}" class="cert-image" onerror="this.src='https://via.placeholder.com/600x450/FFD93D/000000?text=Sertifikat'">
+      </div>
       <div class="cert-body">
         <h4 class="cert-title">${c.title}</h4>
         <p class="cert-issuer"><i class="bi bi-building me-1"></i>${c.issuer}</p>
@@ -302,7 +307,7 @@ function goToSlide(trackId, index) {
 }
 
 /* =========================================================
-   UPDATE DOTS
+   UPDATE DOTS ON SCROLL
    ========================================================= */
 function updateDotsOnScroll(trackId, dotsId) {
   const track = document.getElementById(trackId);
@@ -346,7 +351,7 @@ function openCertificateModal(index) {
 }
 
 /* =========================================================
-   CAROUSEL NAV
+   CAROUSEL NAVIGATION
    ========================================================= */
 function initCarousel(trackId, prevId, nextId) {
   const track = document.getElementById(trackId);
@@ -444,7 +449,7 @@ function initSwipe(trackId) {
 }
 
 /* =========================================================
-   TYPING
+   TYPING EFFECT
    ========================================================= */
 function initTypingEffect() {
   const roleEl = document.getElementById('roleTyping');
@@ -490,7 +495,7 @@ function initTypingEffect() {
 }
 
 /* =========================================================
-   COUNTER
+   ANIMATED COUNTER
    ========================================================= */
 function initCounter() {
   const counters = document.querySelectorAll('.counter');
@@ -526,7 +531,7 @@ function initCounter() {
 }
 
 /* =========================================================
-   SCROLL PROGRESS
+   SCROLL PROGRESS BAR
    ========================================================= */
 function initScrollProgress() {
   const progressBar = document.getElementById('scrollProgress');
@@ -541,7 +546,7 @@ function initScrollProgress() {
 }
 
 /* =========================================================
-   NAVBAR
+   NAVBAR SCROLL & ACTIVE LINK
    ========================================================= */
 function initNavbar() {
   const backToTop = document.getElementById('backToTop');
