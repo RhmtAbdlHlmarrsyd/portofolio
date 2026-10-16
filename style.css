@@ -21,7 +21,11 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  overflow-x: hidden;
+}
 
 body {
   font-family: var(--font-main);
@@ -39,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a { text-decoration: none; color: var(--text-primary); transition: all 0.2s ease; }
-img { max-width: 100%; height: auto; }
+img { max-width: 100%; height: auto; display: block; }
 
 /* SCROLL PROGRESS */
 .scroll-progress {
@@ -472,7 +476,7 @@ img { max-width: 100%; height: auto; }
 }
 
 /* =========================================================
-   PROJECT CARD
+   PROJECT CARD — RESPONSIVE TANPA KEPOTONG
    ========================================================= */
 .project-card {
   background: var(--bg-card);
@@ -483,14 +487,16 @@ img { max-width: 100%; height: auto; }
   overflow: hidden;
   width: 100%;
   max-width: 720px;
-  height: 560px;
   margin: 0 auto;
+  /* Pakai min-height biar fleksibel */
+  min-height: 520px;
 }
 
 .project-image-wrapper {
   position: relative;
   width: 100%;
-  height: 320px;
+  /* Aspect ratio biar proporsional di semua layar */
+  aspect-ratio: 16/9;
   flex-shrink: 0;
   border-bottom: 4px solid var(--border-black);
   overflow: hidden;
@@ -534,7 +540,7 @@ img { max-width: 100%; height: auto; }
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 2.4em;
+  line-height: 1.3;
 }
 
 .project-desc {
@@ -554,7 +560,6 @@ img { max-width: 100%; height: auto; }
   flex-wrap: wrap;
   gap: 0.35rem;
   margin-bottom: 1rem;
-  min-height: 28px;
 }
 
 .tech-tag {
@@ -570,6 +575,7 @@ img { max-width: 100%; height: auto; }
   display: flex;
   gap: 0.5rem;
   margin-top: auto;
+  flex-wrap: wrap;
 }
 
 .btn-project {
@@ -596,7 +602,7 @@ img { max-width: 100%; height: auto; }
 }
 
 /* =========================================================
-   CERTIFICATE CARD — GAMBAR TIDAK TERPOTONG
+   CERTIFICATE CARD — RESPONSIVE, TIDAK KEPOTONG
    ========================================================= */
 .cert-card {
   background: var(--bg-card);
@@ -608,29 +614,31 @@ img { max-width: 100%; height: auto; }
   cursor: pointer;
   width: 100%;
   max-width: 720px;
-  height: 560px;
   margin: 0 auto;
+  min-height: 520px;
 }
 
-/* Wrapper gambar sertifikat — pakai contain biar utuh */
+/* Wrapper gambar sertifikat — contain biar utuh */
 .cert-image-wrapper {
   position: relative;
   width: 100%;
-  height: 380px;
+  aspect-ratio: 4/3;             /* ← proporsional, tidak kepotong */
   flex-shrink: 0;
   border-bottom: 4px solid var(--border-black);
-  background: #FFFFFF;          /* ← background putih biar rapi */
+  background: #FFFFFF;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;                /* ← kasih jarak dari border */
+  padding: 12px;                  /* ← kasih padding biar rapi */
 }
 
 .cert-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;          /* ← GANTI dari cover ke contain */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;            /* ← gambar utuh */
   object-position: center;
   display: block;
 }
@@ -652,7 +660,6 @@ img { max-width: 100%; height: auto; }
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 2.6em;
 }
 
 .cert-issuer {
@@ -660,7 +667,7 @@ img { max-width: 100%; height: auto; }
   font-weight: 700;
   margin-bottom: 0.3rem;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -789,7 +796,9 @@ img { max-width: 100%; height: auto; }
 .back-to-top.show { opacity: 1; visibility: visible; }
 .back-to-top:hover { background: var(--yellow); transform: translate(2px, 2px); }
 
-/* RESPONSIVE */
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
 @media (max-width: 991.98px) {
   .navbar-collapse {
     background: var(--bg-card);
@@ -806,29 +815,140 @@ img { max-width: 100%; height: auto; }
   .section { padding: 60px 0; }
   .carousel-btn { width: 48px; height: 48px; font-size: 1.2rem; }
 
-  .project-card, .cert-card { height: 520px; max-width: 600px; }
-  .project-image-wrapper { height: 290px; }
-  .cert-image-wrapper { height: 350px; }
+  .project-card, .cert-card {
+    max-width: 600px;
+    min-height: 480px;
+  }
+
+  .project-title { font-size: 1.1rem; }
+  .project-desc { font-size: 0.85rem; }
 }
 
+/* =========================================================
+   RESPONSIVE — HP (PALING PENTING)
+   ========================================================= */
 @media (max-width: 575.98px) {
-  .hero-photo-wrapper { max-width: 220px; }
-  .btn-brutal, .btn-brutal-outline { width: 100%; justify-content: center; }
+  body { padding-top: 70px; }
 
-  .section { padding: 50px 0; }
-  .carousel-btn { width: 40px; height: 40px; font-size: 1rem; }
+  .hero-section { padding: 40px 0 60px; min-height: auto; }
+  .hero-photo-wrapper { max-width: 200px; border-width: 4px; box-shadow: 5px 5px 0 var(--border-black); }
+  .hero-name-text { font-size: 1.75rem; }
+  .hero-role-text { font-size: 0.95rem; }
+  .hero-desc { font-size: 0.9rem; }
+
+  .btn-brutal, .btn-brutal-outline {
+    width: 100%;
+    justify-content: center;
+    padding: 0.65rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .hero-socials a { width: 42px; height: 42px; font-size: 1rem; }
+
+  .section { padding: 45px 0; }
+  .section-header { margin-bottom: 2rem; }
+  .section-title { font-size: 1.5rem; }
+  .section-subtitle { font-size: 0.85rem; }
+
+  /* Carousel HP */
+  .carousel-wrapper { gap: 0.5rem; }
+  .carousel-btn { width: 36px; height: 36px; font-size: 0.9rem; }
   .carousel-track { gap: 1rem; }
 
-  .project-body, .cert-body { padding: 1rem; }
+  /* Project Card HP */
+  .project-card {
+    min-height: 420px;
+    max-width: 100%;
+  }
+
+  .project-image-wrapper {
+    aspect-ratio: 16/10;         /* HP: aspect ratio disesuaikan */
+  }
+
+  .project-body { padding: 1rem; }
   .project-title { font-size: 1rem; }
-  .project-desc { font-size: 0.85rem; }
+  .project-desc { font-size: 0.8rem; -webkit-line-clamp: 2; }
 
-  .project-card, .cert-card { height: 480px; max-width: 100%; }
-  .project-image-wrapper { height: 250px; }
-  .cert-image-wrapper { height: 300px; }
+  .tech-tag { font-size: 0.65rem; padding: 0.2rem 0.55rem; }
 
+  .btn-project {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .project-actions { flex-direction: column; }
+
+  /* Certificate Card HP */
+  .cert-card {
+    min-height: 400px;
+    max-width: 100%;
+  }
+
+  .cert-image-wrapper {
+    aspect-ratio: 4/3;           /* HP: tetap 4:3 biar sertifikat utuh */
+    padding: 8px;
+  }
+
+  .cert-body { padding: 1rem; }
+  .cert-title { font-size: 0.9rem; }
+  .cert-issuer { font-size: 0.75rem; }
+  .cert-year { font-size: 0.7rem; }
+
+  /* About */
+  .about-heading { font-size: 1.2rem; }
+  .about-text { font-size: 0.9rem; }
+  .about-stat .counter { font-size: 1.4rem; }
+  .about-stat-label { font-size: 0.65rem; }
+
+  /* Skills */
+  .skill-group-title { font-size: 1rem; }
+  .skill-note { font-size: 0.8rem; }
+  .skill-card { padding: 1rem; gap: 0.75rem; }
+  .skill-logo, .skill-logo-fallback { width: 40px; height: 40px; font-size: 1.2rem; }
+  .skill-card-header h5 { font-size: 0.85rem; }
+  .skill-badge { font-size: 0.55rem; padding: 0.15rem 0.45rem; }
+  .skill-desc { font-size: 0.75rem; }
+
+  /* Timeline */
   .timeline { padding-left: 25px; }
   .timeline-dot { left: -25px; width: 16px; height: 16px; }
+  .timeline-content { padding: 1rem; }
+  .timeline-content h4 { font-size: 0.95rem; }
+  .timeline-content p { font-size: 0.8rem; }
 
-  .skill-logo, .skill-logo-fallback { width: 40px; height: 40px; }
+  /* Contact */
+  .contact-card { padding: 1.25rem 1rem; }
+  .contact-icon-box { width: 50px; height: 50px; font-size: 1.2rem; }
+  .contact-card h5 { font-size: 0.9rem; }
+  .contact-card p { font-size: 0.75rem; }
+
+  /* Back to top */
+  .back-to-top { bottom: 15px; right: 15px; width: 44px; height: 44px; font-size: 1rem; }
+
+  /* Modal */
+  .custom-modal .modal-title { font-size: 0.95rem; }
+}
+
+/* =========================================================
+   RESPONSIVE — HP KECIL (max 375px, iPhone SE, dll)
+   ========================================================= */
+@media (max-width: 375px) {
+  .hero-name-text { font-size: 1.5rem; }
+  .hero-photo-wrapper { max-width: 170px; }
+
+  .project-card { min-height: 380px; }
+  .project-image-wrapper { aspect-ratio: 16/10; }
+  .project-title { font-size: 0.9rem; }
+  .project-desc { font-size: 0.75rem; }
+
+  .cert-card { min-height: 360px; }
+  .cert-title { font-size: 0.85rem; }
+  .cert-issuer { font-size: 0.7rem; }
+
+  .carousel-btn { width: 32px; height: 32px; font-size: 0.8rem; }
+
+  .section-title { font-size: 1.3rem; }
+  .about-stat .counter { font-size: 1.2rem; }
 }
