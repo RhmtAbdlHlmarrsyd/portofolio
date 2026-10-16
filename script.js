@@ -21,6 +21,7 @@ function getDefaultWebSkills() {
     { name: 'Tailwind', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg', level: 'Learning', desc: 'Framework CSS utility-first.' },
     { name: 'Laravel', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg', level: 'Project Experience', desc: 'Framework PHP untuk web app.' },
     { name: 'React', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg', level: 'Learning', desc: 'Library JavaScript untuk UI.' },
+    { name: 'Kotlin', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg', level: 'Learning', desc: 'Bahasa pemrograman modern untuk Android & backend.' },
     { name: 'Ruby', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg', level: 'Learning', desc: 'Bahasa pemrograman dinamis.' },
     { name: 'CRUD', icon: 'bi-arrow-repeat', level: 'Project Experience', desc: 'Create, Read, Update, Delete.' },
     { name: 'Database', icon: 'bi-diagram-3', level: 'Familiar', desc: 'Relasi antar tabel database.' },
@@ -152,6 +153,9 @@ async function loadData() {
 function updateCounters() {
   const techCounter = document.querySelector('.counter[data-target="14"]');
   if (techCounter) techCounter.dataset.target = webSkills.length;
+
+  const techCounterAlt = document.querySelector('.counter[data-target="15"]');
+  if (techCounterAlt) techCounterAlt.dataset.target = webSkills.length;
 
   const projCounter = document.querySelector('.counter[data-target="6"]');
   if (projCounter) projCounter.dataset.target = projects.length;
