@@ -476,7 +476,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* =========================================================
-   PROJECT CARD — RESPONSIVE TANPA KEPOTONG
+   PROJECT CARD — SUDAH DIPERBAIKI (TIDAK KEPOTONG DI MOBILE)
    ========================================================= */
 .project-card {
   background: var(--bg-card);
@@ -488,26 +488,30 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  /* Pakai min-height biar fleksibel */
-  min-height: 520px;
+  /* HAPUS min-height — biar fleksibel sesuai isi */
 }
 
 .project-image-wrapper {
   position: relative;
   width: 100%;
-  /* Aspect ratio biar proporsional di semua layar */
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/10;            /* proporsional & ramah screenshot web */
   flex-shrink: 0;
   border-bottom: 4px solid var(--border-black);
   overflow: hidden;
-  background: var(--bg-secondary);
+  background: #F5F5F5;            /* abu netral biar ruang kosong tetap rapi */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;                    /* kasih napas ke gambar */
 }
 
 .project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;             /* ← KUNCI: gambar utuh, tidak crop */
+  object-position: center;
   display: block;
 }
 
@@ -602,7 +606,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* =========================================================
-   CERTIFICATE CARD — RESPONSIVE, TIDAK KEPOTONG
+   CERTIFICATE CARD — SUDAH DIPERBAIKI (TIDAK KEPOTONG)
    ========================================================= */
 .cert-card {
   background: var(--bg-card);
@@ -615,14 +619,13 @@ img { max-width: 100%; height: auto; display: block; }
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  min-height: 520px;
+  /* HAPUS min-height */
 }
 
-/* Wrapper gambar sertifikat — contain biar utuh */
 .cert-image-wrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/3;             /* ← proporsional, tidak kepotong */
+  aspect-ratio: 4/3;
   flex-shrink: 0;
   border-bottom: 4px solid var(--border-black);
   background: #FFFFFF;
@@ -630,7 +633,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;                  /* ← kasih padding biar rapi */
+  padding: 12px;
 }
 
 .cert-image {
@@ -638,7 +641,7 @@ img { max-width: 100%; height: auto; display: block; }
   max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: contain;            /* ← gambar utuh */
+  object-fit: contain;
   object-position: center;
   display: block;
 }
@@ -817,7 +820,6 @@ img { max-width: 100%; height: auto; display: block; }
 
   .project-card, .cert-card {
     max-width: 600px;
-    min-height: 480px;
   }
 
   .project-title { font-size: 1.1rem; }
@@ -857,12 +859,14 @@ img { max-width: 100%; height: auto; display: block; }
 
   /* Project Card HP */
   .project-card {
-    min-height: 420px;
     max-width: 100%;
+    /* TIDAK ADA min-height — biar fleksibel */
   }
 
   .project-image-wrapper {
-    aspect-ratio: 16/10;         /* HP: aspect ratio disesuaikan */
+    aspect-ratio: 16/10;
+    padding: 6px;
+    background: #F5F5F5;
   }
 
   .project-body { padding: 1rem; }
@@ -882,12 +886,11 @@ img { max-width: 100%; height: auto; display: block; }
 
   /* Certificate Card HP */
   .cert-card {
-    min-height: 400px;
     max-width: 100%;
   }
 
   .cert-image-wrapper {
-    aspect-ratio: 4/3;           /* HP: tetap 4:3 biar sertifikat utuh */
+    aspect-ratio: 4/3;
     padding: 8px;
   }
 
@@ -938,12 +941,10 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-name-text { font-size: 1.5rem; }
   .hero-photo-wrapper { max-width: 170px; }
 
-  .project-card { min-height: 380px; }
   .project-image-wrapper { aspect-ratio: 16/10; }
   .project-title { font-size: 0.9rem; }
   .project-desc { font-size: 0.75rem; }
 
-  .cert-card { min-height: 360px; }
   .cert-title { font-size: 0.85rem; }
   .cert-issuer { font-size: 0.7rem; }
 
