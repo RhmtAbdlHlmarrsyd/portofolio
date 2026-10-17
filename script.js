@@ -1,28 +1,4 @@
 /* =========================================================
-   0. PRELOADER — JALANKAN PALING AWAL (SEBELUM APA PUN)
-   ========================================================= */
-(function forcePreloader() {
-  const preloader = document.getElementById('preloader');
-  if (!preloader) return;
-
-  // Pastikan terlihat
-  preloader.style.display = 'flex';
-  preloader.classList.remove('hidden');
-
-  // JALUR 1: Hilangkan setelah 2.7 detik (jalan normal)
-  setTimeout(() => {
-    preloader.classList.add('hidden');
-  }, 2700);
-
-  // JALUR 2: CADANGAN — Paksa hilang setelah 5 detik apapun yang terjadi
-  setTimeout(() => {
-    preloader.classList.add('hidden');
-    preloader.style.display = 'none';
-  }, 5000);
-})();
-
-
-/* =========================================================
    DATA
    ========================================================= */
 let webSkills = [];
@@ -153,6 +129,361 @@ function renderSkills() {
                 <h5>${skill.name}</h5>
                 <span class="skill-badge ${badgeClass[skill.level] || 'badge-familiar'}">${skill.level || 'Familiar'}</span>
               </div>
+              <p class="skill-desc">${skill.desc || ''}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  if (motorContainer) {
+    motorContainer.innerHTML = motorSkills.map(skill => `
+      <div class="col-md-6 col-lg-3 stagger-item">
+        <div class="skill-card">
+          <div class="skill-logo-fallback"><i class="bi ${skill.icon || 'bi-tools'}"></i></div>
+          <div class="skill-content">
+            <div class="skill-card-header">
+              <h5>${skill.name}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+function renderProjects() {
+  const track = document.getElementById('projectsTrack');
+  if (!track) return;
+
+  if (projects.length === 0) {
+    track.innerHTML = '<div class="text-center p-4"><p>Belum ada project.</p></div>';
+    return;
+  }
+
+  track.innerHTML = projects.map(p => `
+    <div class="project-card">
+      <div class="project-image-wrapper">
+        ${p.featured ? '<span class="project-featured-badge"><i class="bi bi-star-fill me-1"></i>Utama</span>' : ''}
+        <img src="${p.image}" alt="${p.title}" class="project-image" onerror="this.src='https://via.placeholder.com/800x450/FFD93D/000000?text=${encodeURIComponent(p.title)}'">
+      </div>
+      <div class="project-body">
+        <h4 class="project-title">${p.title}</h4>
+        <p class="project-desc">${p.description}</p>
+        <div class="project-tech">
+          ${(p.tech || []).map(t => `<span class="tech-tag">${t}</span>`).join('')}
+        </div>
+        <div class="project-actions">
+          <a href="${p.github || '#'}" target="_blank" class="btn-project">
+            <i class="bi bi-github"></i> Lihat GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  renderDots('projectDots', projects.length, 'projectsTrack');
+}
+
+function renderCertificates() {
+  const track = document.getElementById('certificatesTrack');
+  if (!track) return;
+
+  if (certificates.length === 0) {
+    track.innerHTML = '<div class="text-center p-4"><p>Belum ada sertifikat.</p></div>';
+    return;
+  }
+
+  track.innerHTML = certificates.map((c, i) => `
+    <div class="cert-card" onclick="openCertificateModal(${i})">
+      <div class="cert-image-wrapper">
+        <img src="${c.image}" alt="${c.title}" class="cert-image" onerror="this.src='https://via.placeholder.com/600x450/FFD93D/000000?text=Sertifikat'">
+      </div>
+      <div class="cert-body">
+        <h4 class="cert-title">${c.title}</h4>
+        <p class="cert-issuer"><i class="bi bi-building me-1"></i>${c.issuer}</p>
+        <p class="cert-year"><i class="bi bi-calendar3 me-1"></i>${c.year}</p>
+      </div>
+    </div>
+  `).join('');
+
+  renderDots('certDots', certificates.length, 'certificatesTrack');
+}
+
+function renderDots(containerId, count, trackId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  container.innerHTML = Array.from({ length: count }).map((_, i) => `
+    <div class="carousel-dot ${i === 0 ? 'active' : ''}" 
+         data-index="${i}" 
+         onclick="goToSlide('${trackId}', ${i})"></div>
+  `).join('');
+}
+
+function goToSlide(trackId, index) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+
+  const card = track.children[index];
+  if (!card) return;
+
+  track.scrollTo({
+    left: card.offsetLeft - track.offsetLeft,
+    behavior: 'smooth'
+  });
+}
+
+function updateDotsOnScroll(trackId, dotsId) {
+  const track = document.getElementById(trackId);
+  const dotsContainer = document.getElementById(dotsId);
+  if (!track || !dotsContainer) return;
+
+  track.addEventListener('scroll', () => {
+    const children = Array.from(track.children);
+    const trackCenter = track.scrollLeft + track.clientWidth / 2;
+
+    let activeIndex = 0;
+    let minDistance = Infinity;
+
+    children.forEach((child, i) => {
+      const childCenter = child.offsetLeft - track.offsetLeft + child.clientWidth / 2;
+      const distance = Math.abs(childCenter - trackCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeIndex = i;
+      }
+    });
+
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === activeIndex);
+    });
+  });
+}
+
+function openCertificateModal(index) {
+  if (!certificates.length) return;
+  const c = certificates[index];
+  document.getElementById('certificateModalImage').src = c.image;
+  document.getElementById('certificateModalTitle').textContent = c.title;
+  document.getElementById('certificateModalIssuer').textContent = c.issuer;
+  document.getElementById('certificateModalYear').textContent = c.year;
+  
+  if (typeof bootstrap !== 'undefined') {
+    const modal = new bootstrap.Modal(document.getElementById('certificateModal'));
+    modal.show();
+  }
+}
+
+function initCarousel(trackId, prevId, nextId) {
+  const track = document.getElementById(trackId);
+  const prevBtn = document.getElementById(prevId);
+  const nextBtn = document.getElementById(nextId);
+
+  if (!track || !prevBtn || !nextBtn) return;
+
+  function getActiveIndex() {
+    const children = Array.from(track.children);
+    const trackCenter = track.scrollLeft + track.clientWidth / 2;
+    let activeIndex = 0;
+    let minDistance = Infinity;
+    children.forEach((child, i) => {
+      const childCenter = child.offsetLeft - track.offsetLeft + child.clientWidth / 2;
+      const distance = Math.abs(childCenter - trackCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        activeIndex = i;
+      }
+    });
+    return activeIndex;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    const idx = Math.max(0, getActiveIndex() - 1);
+    goToSlide(trackId, idx);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const children = track.children;
+    const idx = Math.min(children.length - 1, getActiveIndex() + 1);
+    goToSlide(trackId, idx);
+  });
+}
+
+function initSwipe(trackId) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  track.addEventListener('mousedown', (e) => {
+    isDown = true;
+    track.style.cursor = 'grabbing';
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+
+  track.addEventListener('mouseleave', () => {
+    isDown = false;
+    track.style.cursor = 'grab';
+  });
+
+  track.addEventListener('mouseup', () => {
+    isDown = false;
+    track.style.cursor = 'grab';
+  });
+
+  track.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 2;
+    track.scrollLeft = scrollLeft - walk;
+  });
+
+  track.addEventListener('touchstart', () => {
+    track.style.scrollSnapType = 'none';
+  });
+
+  track.addEventListener('touchend', () => {
+    track.style.scrollSnapType = 'x mandatory';
+    setTimeout(() => {
+      const children = Array.from(track.children);
+      const trackCenter = track.scrollLeft + track.clientWidth / 2;
+      let activeIndex = 0;
+      let minDistance = Infinity;
+      children.forEach((child, i) => {
+        const childCenter = child.offsetLeft - track.offsetLeft + child.clientWidth / 2;
+        const distance = Math.abs(childCenter - trackCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          activeIndex = i;
+        }
+      });
+      goToSlide(trackId, activeIndex);
+    }, 50);
+  });
+}
+
+function initTypingEffect() {
+  const roleEl = document.getElementById('roleTyping');
+  if (!roleEl) return;
+
+  const roles = ['Web Development Enthusiast', 'Motorcycle Technician', 'Frontend Learner', 'Laravel Explorer', 'SMK Student'];
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeRole() {
+    const currentRole = roles[roleIndex];
+    const speed = isDeleting ? 40 : 90;
+
+    if (!isDeleting) {
+      roleEl.textContent = currentRole.substring(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === currentRole.length) {
+        isDeleting = true;
+        setTimeout(typeRole, 1800);
+        return;
+      }
+    } else {
+      roleEl.textContent = currentRole.substring(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+
+    setTimeout(typeRole, speed);
+  }
+
+  typeRole();
+}
+
+function initCounter() {
+  const counters = document.querySelectorAll('.counter');
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const counter = entry.target;
+      const target = +counter.getAttribute('data-target');
+      if (isNaN(target)) return;
+
+      let current = 0;
+      const step = target / (1500 / 16);
+
+      const updateCounter = () => {
+        current += step;
+        if (current < target) {
+          counter.textContent = Math.ceil(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target + (target === 100 ? '%' : '+');
+        }
+      };
+
+      updateCounter();
+      observer.unobserve(counter);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(c => observer.observe(c));
+}
+
+function initScrollProgress() {
+  const progressBar = document.getElementById('scrollProgress');
+  if (!progressBar) return;
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = (scrollTop / docHeight) * 100;
+    progressBar.style.width = percent + '%';
+  });
+}
+
+function initNavbar() {
+  const backToTop = document.getElementById('backToTop');
+  const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    if (backToTop) {
+      if (scrollY > 400) backToTop.classList.add('show');
+      else backToTop.classList.remove('show');
+    }
+
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      if (scrollY >= sectionTop) current = section.getAttribute('id');
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+    });
+  });
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const collapse = document.getElementById(              </div>
               <p class="skill-desc">${skill.desc || ''}</p>
             </div>
           </div>
