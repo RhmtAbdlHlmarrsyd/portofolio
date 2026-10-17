@@ -6,9 +6,6 @@ let motorSkills = [];
 let projects = [];
 let certificates = [];
 
-/* =========================================================
-   SKILL WEB — LOGO WARNA (Devicon CDN)
-   ========================================================= */
 function getDefaultWebSkills() {
   return [
     { name: 'HTML', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg', level: 'Project Experience', desc: 'Membuat struktur halaman web.' },
@@ -46,9 +43,6 @@ function getDefaultMotorSkills() {
   ];
 }
 
-/* =========================================================
-   FALLBACK PROJECTS
-   ========================================================= */
 function getDefaultProjects() {
   return [
     {
@@ -102,9 +96,6 @@ function getDefaultProjects() {
   ];
 }
 
-/* =========================================================
-   FALLBACK CERTIFICATES
-   ========================================================= */
 function getDefaultCertificates() {
   return [
     { title: 'Program Paham AI', issuer: 'Senopati Academy · Polri · Kemendikdasmen', year: '2026', description: 'Sertifikat Kompetensi Program Paham AI.', image: 'assets/certificates/certificate-1.png' },
@@ -122,9 +113,6 @@ function getDefaultCertificates() {
   ];
 }
 
-/* =========================================================
-   LOAD DATA DARI data.json
-   ========================================================= */
 async function loadData() {
   try {
     const res = await fetch('data.json?v=' + Date.now());
@@ -147,15 +135,9 @@ async function loadData() {
   }
 }
 
-/* =========================================================
-   UPDATE COUNTERS
-   ========================================================= */
 function updateCounters() {
-  const techCounter = document.querySelector('.counter[data-target="14"]');
+  const techCounter = document.querySelector('.counter[data-target="15"]');
   if (techCounter) techCounter.dataset.target = webSkills.length;
-
-  const techCounterAlt = document.querySelector('.counter[data-target="15"]');
-  if (techCounterAlt) techCounterAlt.dataset.target = webSkills.length;
 
   const projCounter = document.querySelector('.counter[data-target="6"]');
   if (projCounter) projCounter.dataset.target = projects.length;
@@ -164,9 +146,6 @@ function updateCounters() {
   if (motorCounter) motorCounter.dataset.target = motorSkills.length;
 }
 
-/* =========================================================
-   RENDER SKILLS (dengan logo warna)
-   ========================================================= */
 function renderSkills() {
   const webContainer = document.getElementById('webSkills');
   const motorContainer = document.getElementById('motorSkills');
@@ -184,7 +163,7 @@ function renderSkills() {
         : `<div class="skill-logo-fallback"><i class="bi ${skill.icon || 'bi-code-slash'}"></i></div>`;
 
       return `
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 stagger-item">
           <div class="skill-card">
             ${logoHtml}
             <div class="skill-content">
@@ -202,7 +181,7 @@ function renderSkills() {
 
   if (motorContainer) {
     motorContainer.innerHTML = motorSkills.map(skill => `
-      <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-3 stagger-item">
         <div class="skill-card">
           <div class="skill-logo-fallback"><i class="bi ${skill.icon || 'bi-tools'}"></i></div>
           <div class="skill-content">
@@ -216,9 +195,6 @@ function renderSkills() {
   }
 }
 
-/* =========================================================
-   RENDER PROJECTS (Carousel)
-   ========================================================= */
 function renderProjects() {
   const track = document.getElementById('projectsTrack');
   if (!track) return;
@@ -252,9 +228,6 @@ function renderProjects() {
   renderDots('projectDots', projects.length, 'projectsTrack');
 }
 
-/* =========================================================
-   RENDER CERTIFICATES (Carousel) — DENGAN WRAPPER GAMBAR
-   ========================================================= */
 function renderCertificates() {
   const track = document.getElementById('certificatesTrack');
   if (!track) return;
@@ -280,9 +253,6 @@ function renderCertificates() {
   renderDots('certDots', certificates.length, 'certificatesTrack');
 }
 
-/* =========================================================
-   RENDER DOTS
-   ========================================================= */
 function renderDots(containerId, count, trackId) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -294,9 +264,6 @@ function renderDots(containerId, count, trackId) {
   `).join('');
 }
 
-/* =========================================================
-   GO TO SLIDE
-   ========================================================= */
 function goToSlide(trackId, index) {
   const track = document.getElementById(trackId);
   if (!track) return;
@@ -310,9 +277,6 @@ function goToSlide(trackId, index) {
   });
 }
 
-/* =========================================================
-   UPDATE DOTS ON SCROLL
-   ========================================================= */
 function updateDotsOnScroll(trackId, dotsId) {
   const track = document.getElementById(trackId);
   const dotsContainer = document.getElementById(dotsId);
@@ -340,9 +304,6 @@ function updateDotsOnScroll(trackId, dotsId) {
   });
 }
 
-/* =========================================================
-   MODAL CERTIFICATE
-   ========================================================= */
 function openCertificateModal(index) {
   if (!certificates.length) return;
   const c = certificates[index];
@@ -354,9 +315,6 @@ function openCertificateModal(index) {
   modal.show();
 }
 
-/* =========================================================
-   CAROUSEL NAVIGATION
-   ========================================================= */
 function initCarousel(trackId, prevId, nextId) {
   const track = document.getElementById(trackId);
   const prevBtn = document.getElementById(prevId);
@@ -392,9 +350,6 @@ function initCarousel(trackId, prevId, nextId) {
   });
 }
 
-/* =========================================================
-   SWIPE
-   ========================================================= */
 function initSwipe(trackId) {
   const track = document.getElementById(trackId);
   if (!track) return;
@@ -452,9 +407,6 @@ function initSwipe(trackId) {
   });
 }
 
-/* =========================================================
-   TYPING EFFECT
-   ========================================================= */
 function initTypingEffect() {
   const roleEl = document.getElementById('roleTyping');
   if (!roleEl) return;
@@ -498,9 +450,6 @@ function initTypingEffect() {
   typeRole();
 }
 
-/* =========================================================
-   ANIMATED COUNTER
-   ========================================================= */
 function initCounter() {
   const counters = document.querySelectorAll('.counter');
   if (!counters.length) return;
@@ -534,9 +483,6 @@ function initCounter() {
   counters.forEach(c => observer.observe(c));
 }
 
-/* =========================================================
-   SCROLL PROGRESS BAR
-   ========================================================= */
 function initScrollProgress() {
   const progressBar = document.getElementById('scrollProgress');
   if (!progressBar) return;
@@ -549,9 +495,6 @@ function initScrollProgress() {
   });
 }
 
-/* =========================================================
-   NAVBAR SCROLL & ACTIVE LINK
-   ========================================================= */
 function initNavbar() {
   const backToTop = document.getElementById('backToTop');
   const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
@@ -593,10 +536,104 @@ function initNavbar() {
   });
 }
 
+function initScrollAnimations() {
+  const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const staggerContainers = document.querySelectorAll('.stagger-container');
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      } else {
+        entry.target.classList.remove('active');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  const staggerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        const items = entry.target.querySelectorAll('.stagger-item');
+        items.forEach((item, index) => {
+          item.style.transitionDelay = `${index * 0.1}s`;
+        });
+      } else {
+        entry.target.classList.remove('active');
+        const items = entry.target.querySelectorAll('.stagger-item');
+        items.forEach(item => {
+          item.style.transitionDelay = '0s';
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  staggerContainers.forEach(container => staggerObserver.observe(container));
+}
+
+function initParallax() {
+  const parallaxElements = document.querySelectorAll('.parallax-img');
+  if (!parallaxElements.length) return;
+
+  let ticking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        parallaxElements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const speed = 0.05; 
+            const yPos = (rect.top - window.innerHeight / 2) * speed;
+            el.style.transform = `translateY(${yPos}px)`;
+          }
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+}
+
+/* =========================================================
+   LOADER TIMING & PROGRESS BAR SIMULATION
+   ========================================================= */
+function initPreloader() {
+  const preloader = document.getElementById('preloader');
+  const barFill = document.getElementById('loaderBarFill');
+  
+  if (!preloader || !barFill) return;
+
+  const duration = 2500; 
+  let startTime = null;
+
+  function animateBar(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = timestamp - startTime;
+
+    let percentage = (progress / duration) * 100;
+    if (percentage > 100) percentage = 100;
+
+    barFill.style.width = percentage + '%';
+
+    if (progress < duration) {
+      requestAnimationFrame(animateBar);
+    } else {
+      preloader.classList.add('hidden');
+    }
+  }
+
+  requestAnimationFrame(animateBar);
+}
+
 /* =========================================================
    INIT SEMUA
    ========================================================= */
 document.addEventListener('DOMContentLoaded', async () => {
+  initPreloader();
+
   await loadData();
 
   renderSkills();
@@ -615,6 +652,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   updateDotsOnScroll('projectsTrack', 'projectDots');
   updateDotsOnScroll('certificatesTrack', 'certDots');
+  
+  initScrollAnimations();
+  initParallax();
 
-  console.log('[Portfolio] Website siap!');
-});
+  console.log('[Portfolio] Website siap dengan animasi elegan!');
+}); 
