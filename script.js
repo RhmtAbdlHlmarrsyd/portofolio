@@ -45,71 +45,29 @@ function getDefaultMotorSkills() {
 
 function getDefaultProjects() {
   return [
-    {
-      title: 'Sistem Manajemen Bengkel Sepeda Motor',
-      description: 'Aplikasi web untuk mengelola data bengkel sepeda motor: pelanggan, motor, mekanik, servis, sparepart.',
-      image: 'assets/projects/project-1.jpg',
-      tech: ['PHP', 'MySQL', 'Bootstrap', 'CRUD'],
-      github: 'https://github.com/RhmtAbdlHlmarrsyd/website-manajemen-bengkel-sepeda-motor',
-      featured: true
-    },
-    {
-      title: 'KampungFarm — Manajemen Peternakan Ayam',
-      description: 'Platform manajemen peternakan ayam: data ayam, kandang, pakan, kesehatan, penjualan.',
-      image: 'assets/projects/project-2.jpg',
-      tech: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'],
-      github: 'https://github.com/RhmtAbdlHlmarrsyd/kampungfarm',
-      featured: false
-    },
-    {
-      title: 'RumahKu Finance — Pengeluaran Rumah Tangga',
-      description: 'Aplikasi keuangan rumah tangga: catat pengeluaran, atur anggaran, pantau keuangan keluarga.',
-      image: 'assets/projects/project-3.jpg',
-      tech: ['Laravel', 'PHP', 'MySQL'],
-      github: 'https://github.com/RhmtAbdlHlmarrsyd/rumahku-finance',
-      featured: false
-    },
-    {
-      title: 'Data Obat — Sistem Informasi Obat',
-      description: 'Aplikasi CRUD data obat: kode obat, nama obat, stok, harga. Dengan fitur update dan delete.',
-      image: 'assets/projects/project-4.jpg',
-      tech: ['PHP', 'MySQL', 'Bootstrap', 'CRUD'],
-      github: 'https://github.com/RhmtAbdlHlmarrsyd/data-obat',
-      featured: false
-    },
-    {
-      title: 'Data Siswa — Sistem Informasi Siswa',
-      description: 'Aplikasi CRUD data siswa: nama, kelas, asal. Dengan fitur tambah, update, delete, dan login.',
-      image: 'assets/projects/project-6.jpg',
-      tech: ['PHP', 'MySQL', 'Bootstrap', 'CRUD'],
-      github: 'https://github.com/RhmtAbdlHlmarrsyd/data-siswa',
-      featured: false
-    },
-    {
-      title: 'CafeAbdul — Website Cafe',
-      description: 'Website profil cafe: halaman utama, katalog produk, promo, dan keranjang belanja.',
-      image: 'assets/projects/project-5.jpg',
-      tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'],
-      github: 'https://github.com/RhmtAbdlHlmarrsyd/CafeAbdul',
-      featured: false
-    }
+    { title: 'Sistem Manajemen Bengkel Sepeda Motor', description: 'Aplikasi web untuk mengelola data bengkel sepeda motor.', image: 'assets/projects/project-1.jpg', tech: ['PHP', 'MySQL', 'Bootstrap', 'CRUD'], github: 'https://github.com/RhmtAbdlHlmarrsyd/website-manajemen-bengkel-sepeda-motor', featured: true },
+    { title: 'KampungFarm — Manajemen Peternakan Ayam', description: 'Platform manajemen peternakan ayam.', image: 'assets/projects/project-2.jpg', tech: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'], github: 'https://github.com/RhmtAbdlHlmarrsyd/kampungfarm', featured: false },
+    { title: 'RumahKu Finance — Pengeluaran Rumah Tangga', description: 'Aplikasi keuangan rumah tangga.', image: 'assets/projects/project-3.jpg', tech: ['Laravel', 'PHP', 'MySQL'], github: 'https://github.com/RhmtAbdlHlmarrsyd/rumahku-finance', featured: false },
+    { title: 'Data Obat — Sistem Informasi Obat', description: 'Aplikasi CRUD data obat.', image: 'assets/projects/project-4.jpg', tech: ['PHP', 'MySQL', 'Bootstrap', 'CRUD'], github: 'https://github.com/RhmtAbdlHlmarrsyd/data-obat', featured: false },
+    { title: 'Data Siswa — Sistem Informasi Siswa', description: 'Aplikasi CRUD data siswa.', image: 'assets/projects/project-6.jpg', tech: ['PHP', 'MySQL', 'Bootstrap', 'CRUD'], github: 'https://github.com/RhmtAbdlHlmarrsyd/data-siswa', featured: false },
+    { title: 'CafeAbdul — Website Cafe', description: 'Website profil cafe.', image: 'assets/projects/project-5.jpg', tech: ['HTML', 'CSS', 'JavaScript', 'Bootstrap 5'], github: 'https://github.com/RhmtAbdlHlmarrsyd/CafeAbdul', featured: false }
   ];
 }
 
 function getDefaultCertificates() {
   return [
-    { title: 'Program Paham AI', issuer: 'Senopati Academy · Polri · Kemendikdasmen', year: '2026', description: 'Sertifikat Kompetensi Program Paham AI.', image: 'assets/certificates/certificate-1.png' },
-    { title: 'Certificate of AI Class ASEAN', issuer: 'ASEAN Foundation · Google.org', year: '2026', description: 'Certificate of Completion AI Class ASEAN.', image: 'assets/certificates/certificate-2.png' },
-    { title: 'Sertifikat Kompetensi Unit Uji Kompetensi', issuer: 'SMK Negeri 2 Mojokerto', year: '2026', description: 'Dinyatakan Kompeten pada UUK RPL.', image: 'assets/certificates/certificate-3.png' },
-    { title: 'Game Edukasi Construct', issuer: 'Gamelab Indonesia · Educa Studio', year: '2026', description: 'Sertifikat Kelulusan Game Edukasi Construct.', image: 'assets/certificates/certificate-4.png' },
-    { title: 'Tutorial Dasar Menggunakan Github', issuer: 'Getskill.id', year: '2026', description: 'Sertifikat kelulusan Tutorial Dasar Github.', image: 'assets/certificates/certificate-5.png' },
-    { title: 'Pemrograman Web Menggunakan Framework Laravel', issuer: 'Getskill.id', year: '2026', description: 'Sertifikat kelulusan Laravel.', image: 'assets/certificates/certificate-6.png' },
-    { title: 'Pemrograman Web dengan PHP Native', issuer: 'Getskill.id', year: '2026', description: 'Sertifikat kelulusan PHP Native.', image: 'assets/certificates/certificate-7.png' },
-    { title: 'Pemrograman Front End Web dengan Bootstrap', issuer: 'Getskill.id', year: '2026', description: 'Sertifikat kelulusan Bootstrap.', image: 'assets/certificates/certificate-8.png' },
-    { title: 'Pengenalan IT dan Fundamental Programming', issuer: 'Getskill.id', year: '2026', description: 'Sertifikat kelulusan Fundamental Programming.', image: 'assets/certificates/certificate-9.png' },
-    { title: 'Mastering Public Speaking', issuer: 'Getskill.id', year: '2026', description: 'Sertifikat kelulusan Public Speaking.', image: 'assets/certificates/certificate-10.png' },
-    { title: 'Belajar Coding Menggunakan Scratch', issuer: 'Getskill.id', year: '2026', description: 'Sertifikat kelulusan Scratch.', image: 'assets/certificates/certificate-11.png' },
-    { title: 'Java Fundamental Programming', issuer: 'Getskill.id', year: '2026', description: 'Sertifikat kelulusan Java.', image: 'assets/certificates/certificate-12.png' }
+    { title: 'Program Paham AI', issuer: 'Senopati Academy · Polri · Kemendikdasmen', year: '2026', image: 'assets/certificates/certificate-1.png' },
+    { title: 'Certificate of AI Class ASEAN', issuer: 'ASEAN Foundation · Google.org', year: '2026', image: 'assets/certificates/certificate-2.png' },
+    { title: 'Sertifikat Kompetensi Unit Uji Kompetensi', issuer: 'SMK Negeri 2 Mojokerto', year: '2026', image: 'assets/certificates/certificate-3.png' },
+    { title: 'Game Edukasi Construct', issuer: 'Gamelab Indonesia · Educa Studio', year: '2026', image: 'assets/certificates/certificate-4.png' },
+    { title: 'Tutorial Dasar Menggunakan Github', issuer: 'Getskill.id', year: '2026', image: 'assets/certificates/certificate-5.png' },
+    { title: 'Pemrograman Web Menggunakan Framework Laravel', issuer: 'Getskill.id', year: '2026', image: 'assets/certificates/certificate-6.png' },
+    { title: 'Pemrograman Web dengan PHP Native', issuer: 'Getskill.id', year: '2026', image: 'assets/certificates/certificate-7.png' },
+    { title: 'Pemrograman Front End Web dengan Bootstrap', issuer: 'Getskill.id', year: '2026', image: 'assets/certificates/certificate-8.png' },
+    { title: 'Pengenalan IT dan Fundamental Programming', issuer: 'Getskill.id', year: '2026', image: 'assets/certificates/certificate-9.png' },
+    { title: 'Mastering Public Speaking', issuer: 'Getskill.id', year: '2026', image: 'assets/certificates/certificate-10.png' },
+    { title: 'Belajar Coding Menggunakan Scratch', issuer: 'Getskill.id', year: '2026', image: 'assets/certificates/certificate-11.png' },
+    { title: 'Java Fundamental Programming', issuer: 'Getskill.id', year: '2026', image: 'assets/certificates/certificate-12.png' }
   ];
 }
 
@@ -126,7 +84,7 @@ async function loadData() {
 
     updateCounters();
   } catch (err) {
-    console.error('Gagal load data.json, pakai default:', err);
+    console.warn('Gagal load data.json, pakai default:', err);
     webSkills = getDefaultWebSkills();
     motorSkills = getDefaultMotorSkills();
     projects = getDefaultProjects();
@@ -311,8 +269,11 @@ function openCertificateModal(index) {
   document.getElementById('certificateModalTitle').textContent = c.title;
   document.getElementById('certificateModalIssuer').textContent = c.issuer;
   document.getElementById('certificateModalYear').textContent = c.year;
-  const modal = new bootstrap.Modal(document.getElementById('certificateModal'));
-  modal.show();
+  
+  if (typeof bootstrap !== 'undefined') {
+    const modal = new bootstrap.Modal(document.getElementById('certificateModal'));
+    modal.show();
+  }
 }
 
 function initCarousel(trackId, prevId, nextId) {
@@ -411,13 +372,7 @@ function initTypingEffect() {
   const roleEl = document.getElementById('roleTyping');
   if (!roleEl) return;
 
-  const roles = [
-    'Web Development Enthusiast',
-    'Motorcycle Technician',
-    'Frontend Learner',
-    'Laravel Explorer',
-    'SMK Student'
-  ];
+  const roles = ['Web Development Enthusiast', 'Motorcycle Technician', 'Frontend Learner', 'Laravel Explorer', 'SMK Student'];
 
   let roleIndex = 0;
   let charIndex = 0;
@@ -529,7 +484,7 @@ function initNavbar() {
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       const collapse = document.getElementById('navMenu');
-      if (collapse && collapse.classList.contains('show')) {
+      if (collapse && collapse.classList.contains('show') && typeof bootstrap !== 'undefined') {
         new bootstrap.Collapse(collapse).hide();
       }
     });
@@ -540,6 +495,11 @@ function initScrollAnimations() {
   const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
   const staggerContainers = document.querySelectorAll('.stagger-container');
 
+  const observerOptions = {
+    threshold: 0.05, 
+    rootMargin: '0px 0px -20px 0px'
+  };
+
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -548,7 +508,7 @@ function initScrollAnimations() {
         entry.target.classList.remove('active');
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+  }, observerOptions);
 
   revealElements.forEach(el => revealObserver.observe(el));
 
@@ -568,74 +528,16 @@ function initScrollAnimations() {
         });
       }
     });
-  }, { threshold: 0.1 });
+  }, observerOptions);
 
   staggerContainers.forEach(container => staggerObserver.observe(container));
-}
-
-function initParallax() {
-  const parallaxElements = document.querySelectorAll('.parallax-img');
-  if (!parallaxElements.length) return;
-
-  let ticking = false;
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        parallaxElements.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
-            const speed = 0.05; 
-            const yPos = (rect.top - window.innerHeight / 2) * speed;
-            el.style.transform = `translateY(${yPos}px)`;
-          }
-        });
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-}
-
-/* =========================================================
-   LOADER TIMING & PROGRESS BAR SIMULATION
-   ========================================================= */
-function initPreloader() {
-  const preloader = document.getElementById('preloader');
-  const barFill = document.getElementById('loaderBarFill');
-  
-  if (!preloader || !barFill) return;
-
-  const duration = 2500; 
-  let startTime = null;
-
-  function animateBar(timestamp) {
-    if (!startTime) startTime = timestamp;
-    const progress = timestamp - startTime;
-
-    let percentage = (progress / duration) * 100;
-    if (percentage > 100) percentage = 100;
-
-    barFill.style.width = percentage + '%';
-
-    if (progress < duration) {
-      requestAnimationFrame(animateBar);
-    } else {
-      preloader.classList.add('hidden');
-    }
-  }
-
-  requestAnimationFrame(animateBar);
 }
 
 /* =========================================================
    INIT SEMUA
    ========================================================= */
 document.addEventListener('DOMContentLoaded', async () => {
-  initPreloader();
-
   await loadData();
-
   renderSkills();
   renderProjects();
   renderCertificates();
@@ -643,18 +545,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   initCounter();
   initScrollProgress();
   initNavbar();
-
   initCarousel('projectsTrack', 'projectPrev', 'projectNext');
   initCarousel('certificatesTrack', 'certPrev', 'certNext');
-
   initSwipe('projectsTrack');
   initSwipe('certificatesTrack');
-
   updateDotsOnScroll('projectsTrack', 'projectDots');
   updateDotsOnScroll('certificatesTrack', 'certDots');
-  
   initScrollAnimations();
-  initParallax();
-
   console.log('[Portfolio] Website siap dengan animasi elegan!');
-}); 
+});
